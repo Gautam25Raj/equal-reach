@@ -1,14 +1,49 @@
-import Sidebar from '@/components/sidebar/Sidebar';
-import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import AppProvider from './Provider';
+
+import Sidebar from '@/components/sidebar/Sidebar';
+import LoginModal from '@/components/layout/Modals/LoginModal';
+
+import './globals.css';
+import RegisterModal from '@/components/layout/Modals/RegisterModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  creator: 'Gautam Raj',
+  publisher: 'Gautam Raj',
   title: 'Equal Reach | Home',
+  applicationName: 'Equal Reach',
   description:
     'Equal Reach aims to address social inequality and promote equal opportunities for all individuals, regardless of their background, gender, race, or socioeconomic status.',
+  keywords: ['Equal Reach', 'Equal', 'Reach'],
+  authors: [{ name: 'Gautam Raj', url: 'https://gautam-raj.vercel.app' }],
+  manifest: 'https://equal-reach.vercel.app/manifest.json',
+
+  icons: {
+    shortcut: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png' },
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/apple-touch-icon-precomposed.png',
+      },
+      {
+        rel: 'apple-touch-icon-180x180-precomposed',
+        url: '/apple-touch-icon-180x180-precomposed.png',
+      },
+    ],
+  },
+
+  appleWebApp: {
+    title: 'Equal Reach',
+  },
 };
 
 export default function RootLayout({
@@ -19,10 +54,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="mx-auto lg:max-w-7xl max-h-screen overflow-hidden grid gap-2 grid-cols-12">
-          <Sidebar />
-          {children}
-        </div>
+        <AppProvider>
+          <RegisterModal />
+          <LoginModal />
+          <div className="mx-auto lg:max-w-7xl max-h-screen overflow-hidden grid gap-0 grid-cols-12 lg:gap-2">
+            <Sidebar />
+            {children}
+          </div>
+        </AppProvider>
       </body>
     </html>
   );
