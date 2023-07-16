@@ -32,6 +32,12 @@ module.exports = {
           '-webkit-background-clip': 'text',
           '-webkit-text-fill-color': 'transparent',
         },
+
+        '.btn-rainbow': {
+          'border-radius': '50px',
+          background:
+            'var(--lgbtq-btn, linear-gradient(-90deg, #B100F4 0%, #5E00F8 14.29%, #363EFD 28.57%, #00C78B 42.86%, #95DB00 57.14%, #E2E700 71.43%, #FF8A00 85.71%, #F13A00 100%))',
+        },
       });
     }),
   ],

@@ -1,9 +1,9 @@
-import Link from 'next/link';
 import React, {
   ForwardRefExoticComponent,
   SVGProps,
   RefAttributes,
 } from 'react';
+import Link from 'next/link';
 
 interface SidebarRowProps {
   Icon: ForwardRefExoticComponent<
