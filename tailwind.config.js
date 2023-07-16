@@ -25,6 +25,13 @@ module.exports = {
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none',
         },
+        '.text-rainbow': {
+          background:
+            'var(--lgbtq-text, linear-gradient(270deg, #AE00EB 0%, #2A19F4 24.44%, #00E456 40.00%, #CEB800 60.00%, #EF6C00 80.00%, #F80029 100%))',
+          'background-clip': 'text',
+          '-webkit-background-clip': 'text',
+          '-webkit-text-fill-color': 'transparent',
+        },
       });
     }),
   ],
