@@ -3,9 +3,8 @@
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { AppSelector, useAppSelector } from '@/store/store';
+import { useAppSelector } from '@/store/store';
 import { AppDispatch } from '@/store/store';
-import { logIn } from '@/store/slice/authSlice';
 import { closeSignupModal, openLoginModal } from '@/store/slice/modalSlice';
 import Modal from '../Modal';
 import Input from '@/components/ui/Input';

@@ -30,7 +30,7 @@ const SidebarRow = ({ Icon, title, href, isBtn, onClick }: SidebarRowProps) => {
   );
 
   return (
-    <li>
+    <li className="w-fit">
       {isBtn ? (
         <button onClick={onClick}>{children}</button>
       ) : (

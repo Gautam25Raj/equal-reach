@@ -1,11 +1,9 @@
 import Feed from '@/components/forum/Feed';
-import Widgets from '@/components/widgets/Widgets';
 
 const page = () => {
   return (
-    <main className="col-span-10 grid gap-2 grid-cols-10">
+    <main className="col-span-10 lg:col-span-6">
       <Feed />
-      <Widgets />
     </main>
   );
 };
