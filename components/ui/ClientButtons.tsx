@@ -32,6 +32,22 @@ const ModalCloseBtn = ({ disabled }: ModalCloseBtnProps) => {
   );
 };
 
+const OverlayScreen = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleClose = useCallback(() => {
+    dispatch(closeLoginModal());
+    dispatch(closeSignupModal());
+  }, [dispatch]);
+
+  return (
+    <div
+      className="h-screen w-screen absolute top-0 left-0"
+      onClick={handleClose}
+    ></div>
+  );
+};
+
 const SidebarSignupButton = () => {
   const openModal = useOpenModal();
 
@@ -39,7 +55,7 @@ const SidebarSignupButton = () => {
     <SidebarRow
       href=""
       Icon={UserIcon}
-      title="Sign In"
+      title="Sign Up"
       isBtn
       onClick={openModal}
     />
@@ -59,4 +75,4 @@ const HeaderButton = () => {
   );
 };
 
-export { HeaderButton, SidebarSignupButton, ModalCloseBtn };
+export { HeaderButton, SidebarSignupButton, ModalCloseBtn, OverlayScreen };

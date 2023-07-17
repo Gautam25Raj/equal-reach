@@ -8,12 +8,7 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-      colors: {
-        twitter: '#00ADED',
-        'twitter-hover': '#1A8CD8',
-      },
-    },
+    extend: {},
   },
   plugins: [
     plugin(function ({ addUtilities }) {
@@ -27,7 +22,7 @@ module.exports = {
         },
         '.text-rainbow': {
           background:
-            'var(--lgbtq-text, linear-gradient(270deg, #AE00EB 0%, #2A19F4 24.44%, #00E456 40.00%, #CEB800 60.00%, #EF6C00 80.00%, #F80029 100%))',
+            'linear-gradient(270deg, #AE00EB 0%, #2A19F4 24.44%, #00E456 40.00%, #CEB800 60.00%, #EF6C00 80.00%, #F80029 100%)',
           'background-clip': 'text',
           '-webkit-background-clip': 'text',
           '-webkit-text-fill-color': 'transparent',
@@ -36,7 +31,16 @@ module.exports = {
         '.btn-rainbow': {
           'border-radius': '50px',
           background:
+            'linear-gradient(-90deg, #B100F4 0%, #5E00F8 14.29%, #363EFD 28.57%, #00C78B 42.86%, #95DB00 57.14%, #E2E700 71.43%, #FF8A00 85.71%, #F13A00 100%)',
+        },
+        '.btn-rainbow-shadow': {
+          content: '',
+          position: 'absolute',
+          inset: '-.625em',
+          background:
             'var(--lgbtq-btn, linear-gradient(-90deg, #B100F4 0%, #5E00F8 14.29%, #363EFD 28.57%, #00C78B 42.86%, #95DB00 57.14%, #E2E700 71.43%, #FF8A00 85.71%, #F13A00 100%))',
+          filter: 'blur(2.5em)',
+          'z-index': '-1',
         },
       });
     }),
