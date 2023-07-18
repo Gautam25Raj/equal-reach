@@ -9,3 +9,67 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  username String @unique
+  email String @unique
+  emailVerified DateTime?
+  password String?
+  hashedPassword String?
+  image String?
+  coverImage String?
+  profileImage String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  followingIds String[] @db.ObjectId
+  hasNotifications Boolean?
+
+  posts Post[]
+  comments Comment[]
+  notifications Notification[]
+}
+
+model Post {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  body String
+  image String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId String @db.ObjectId
+  likedIds String[] @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  comments Comment[]
+  notifications Notification[]
+}
+
+model Comment {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  body String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId String @db.ObjectId
+  postId String @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  notifications Notification[]
+}
+
+model Notification {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  type String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId String @db.ObjectId
+  postId String @db.ObjectId
+  commentId String @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+}
