@@ -1,34 +1,20 @@
-import { useCallback } from 'react';
-
-import Button from '../ui/Button';
 import { ModalCloseBtn, OverlayScreen } from '../ui/ClientButtons';
 
 interface ModelProps {
   isOpen?: boolean;
   title: string;
   children?: React.ReactElement;
-  body?: string;
   footer?: React.ReactElement;
   actionLabel: string;
-  disabled?: boolean;
-  onSubmit: () => void;
 }
 
 const Modal = ({
-  onSubmit,
   title,
   isOpen,
   footer,
   actionLabel,
   children,
-  disabled,
 }: ModelProps) => {
-  const handleSubmit = useCallback(() => {
-    if (disabled) return;
-
-    onSubmit();
-  }, [disabled, onSubmit]);
-
   if (!isOpen) return null;
 
   return (
@@ -44,16 +30,6 @@ const Modal = ({
           </div>
 
           <div className="relative py-10 flex-auto">{children}</div>
-
-          <div className="flex flex-col gap-2 py-5">
-            <Button label="Sign In" fullWidth disabled={disabled} />
-            {/* <Button
-              label="Sign up Now"
-              onClick={openModal}
-              fullWidth={false}
-              disabled={false}
-            /> */}
-          </div>
 
           {footer}
         </div>

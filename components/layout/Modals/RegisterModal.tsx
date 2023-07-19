@@ -1,33 +1,47 @@
 'use client';
 
+import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useAppSelector } from '@/store/store';
 import { AppDispatch } from '@/store/store';
 import { closeSignupModal, openLoginModal } from '@/store/slice/modalSlice';
+
 import Modal from '../Modal';
 import Input from '@/components/ui/Input';
+import { FormButton } from '@/components/ui/Button';
 
 const RegisterModal = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   const isOpen = useAppSelector((state) => state.modalReducer.isSignupOpen);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleSignup = useCallback(async () => {
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     try {
-      setIsLoading(true);
+      await axios.post('/api/register', {
+        name,
+        username,
+        email,
+        password,
+      });
 
       dispatch(closeSignupModal());
+
+      setName('');
+      setUsername('');
+      setEmail('');
+      setPassword('');
     } catch (err) {
       console.log(err);
     }
-  }, [dispatch]);
+  };
 
   const handleToggle = useCallback(() => {
     dispatch(closeSignupModal());
@@ -52,12 +66,14 @@ const RegisterModal = () => {
     <Modal
       title="Create an account"
       isOpen={isOpen}
-      disabled={isLoading}
       footer={footer}
       actionLabel="Sign up"
-      onSubmit={handleSignup}
     >
-      <div className="flex flex-col gap-4">
+      <form
+        className="flex flex-col gap-4"
+        method="post"
+        onSubmit={handleSignup}
+      >
         <Input
           type="text"
           placeholder="Name"
@@ -89,7 +105,11 @@ const RegisterModal = () => {
           onChange={(e) => setPassword(e.target.value)}
           disabled={false}
         />
-      </div>
+
+        <div className="flex flex-col gap-2 py-5">
+          <FormButton label="Sign Up" fullWidth />
+        </div>
+      </form>
     </Modal>
   );
 };

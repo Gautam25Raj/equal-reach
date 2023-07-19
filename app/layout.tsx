@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+
 import AppProvider from './Provider';
+import NextAuthProvider from './NextAuthProvider';
 
 import Sidebar from '@/components/sidebar/Sidebar';
 import LoginModal from '@/components/layout/Modals/LoginModal';
@@ -20,7 +22,6 @@ export const metadata: Metadata = {
     'Equal Reach aims to address social inequality and promote equal opportunities for all individuals, regardless of their background, gender, race, or socioeconomic status.',
   keywords: ['Equal Reach', 'Equal', 'Reach'],
   authors: [{ name: 'Gautam Raj', url: 'https://gautam-raj.vercel.app' }],
-  manifest: 'https://equal-reach.vercel.app/manifest.json',
 
   icons: {
     shortcut: [
@@ -55,14 +56,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppProvider>
-          <RegisterModal />
-          <LoginModal />
-          <div className="mx-auto lg:max-w-7xl max-h-screen overflow-hidden grid gap-0 grid-cols-12 lg:gap-2">
-            <Sidebar />
-            {children}
-          </div>
-        </AppProvider>
+        <NextAuthProvider>
+          <AppProvider>
+            <RegisterModal />
+            <LoginModal />
+            <div className="mx-auto lg:max-w-7xl max-h-screen overflow-hidden grid gap-0 grid-cols-12 lg:gap-2">
+              <Sidebar />
+              {children}
+            </div>
+          </AppProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );
