@@ -34,7 +34,6 @@ export const authOptions: AuthOptions = {
           !credentials?.email ||
           !credentials?.password
         ) {
-          console.log(credentials);
           throw new Error(' credentials');
         }
 
@@ -53,7 +52,6 @@ export const authOptions: AuthOptions = {
 
         if (!isCorrectPassword) throw new Error('Invalid Credentials');
 
-        console.log(user);
         return user;
       },
     }),

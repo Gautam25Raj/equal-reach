@@ -12,11 +12,12 @@ import { closeLoginModal, openSignupModal } from '@/store/slice/modalSlice';
 import Modal from '../Modal';
 import Input from '@/components/ui/Input';
 import { FormButton } from '@/components/ui/Button';
+import Image from 'next/image';
 
 const LoginModal = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('TestUser');
+  const [email, setEmail] = useState('testuser@equalreach.com');
+  const [password, setPassword] = useState('12345678');
 
   const isOpen = useAppSelector((state) => state.modalReducer.isLoginOpen);
   const dispatch = useDispatch<AppDispatch>();
@@ -24,27 +25,30 @@ const LoginModal = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    signIn('credentials', {
-      username,
-      email,
-      password,
-      redirect: false,
-    }).then((callback) => {
-      if (callback?.error) {
-        toast.error(callback.error);
-      } else if (callback?.ok) {
-        toast.success('Logged in successfully!');
-        dispatch(closeLoginModal());
-        setUsername('');
-        setEmail('');
-        setPassword('');
+    await toast.promise(
+      signIn('credentials', {
+        username,
+        email,
+        password,
+        redirect: false,
+      }).then((callback) => {
+        if (callback?.error) {
+          toast.error(callback.error);
+          throw new Error(callback.error);
+        } else if (callback?.ok) {
+          dispatch(closeLoginModal());
+          setUsername('');
+          setEmail('');
+          setPassword('');
+        }
+      }),
+      {
+        loading: 'Logging In...',
+        success: <b>Logged in successfully!</b>,
+        error: <b>Try again!</b>,
       }
-    });
-
-    // dispatch(closeLoginModal());
+    );
   };
-
-  console.log(email);
 
   const handleToggle = useCallback(() => {
     dispatch(closeLoginModal());
@@ -67,37 +71,59 @@ const LoginModal = () => {
 
   return (
     <Modal title="Login" isOpen={isOpen} footer={footer} actionLabel="Sign in">
-      <form className="flex flex-col gap-4" onSubmit={handleLogin}>
-        <Input
-          type="text"
-          placeholder="Username"
-          disabled={false}
-          required={true}
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
-        />
+      <>
+        <button
+          className="flex mx-auto mb-10 items-center rounded-md py-3 px-4 transition-all duration-300 ease-in-ou bg-gray-100 hover:bg-gray-200"
+          onClick={() => signIn('github')}
+        >
+          <Image
+            className="mr-2"
+            src="/home/svg/github.svg"
+            alt="GitHub"
+            width="20"
+            height="20"
+          />
+          Sign in with GitHub
+        </button>
 
-        <Input
-          type="text"
-          placeholder="Email"
-          disabled={false}
-          required={true}
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-
-        <Input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          disabled={false}
-        />
-
-        <div className="flex flex-col gap-2 py-5">
-          <FormButton type="submit" label="Log In" fullWidth />
+        <div className="flex items-center justify-center">
+          <span className="h-0.5 flex-1 bg-gray-100"></span>
+          <span className="text-gray-400 px-2">or</span>
+          <span className="h-0.5 flex-1 bg-gray-100"></span>
         </div>
-      </form>
+
+        <form className="flex flex-col gap-4 mt-10" onSubmit={handleLogin}>
+          <Input
+            type="text"
+            placeholder="Username"
+            disabled={false}
+            required={true}
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+          />
+
+          <Input
+            type="text"
+            placeholder="Email"
+            disabled={false}
+            required={true}
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={false}
+          />
+
+          <div className="flex flex-col gap-2 py-5">
+            <FormButton type="submit" label="Log In" fullWidth />
+          </div>
+        </form>
+      </>
     </Modal>
   );
 };

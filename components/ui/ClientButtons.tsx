@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { XMarkIcon, UserIcon } from '@heroicons/react/24/outline';
 
-import useOpenModal from '@/hooks/useSignupModal';
+import useOpenModal from '@/hooks/useLoginModal';
 
 import { AppDispatch } from '@/store/store';
 import { closeLoginModal, closeSignupModal } from '@/store/slice/modalSlice';
@@ -55,7 +55,7 @@ const SidebarSignupButton = () => {
     <SidebarRow
       href=""
       Icon={UserIcon}
-      title="Sign Up"
+      title="Log In"
       isBtn
       onClick={openModal}
     />

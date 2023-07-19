@@ -3,6 +3,7 @@
 import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { signIn } from 'next-auth/react';
 import { toast } from 'react-hot-toast';
 
 import { useAppSelector } from '@/store/store';
@@ -14,10 +15,10 @@ import Input from '@/components/ui/Input';
 import { FormButton } from '@/components/ui/Button';
 
 const RegisterModal = () => {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('Test User');
+  const [username, setUsername] = useState('TestUser');
+  const [email, setEmail] = useState('testuser@equalreach.com');
+  const [password, setPassword] = useState('12345678');
 
   const isOpen = useAppSelector((state) => state.modalReducer.isSignupOpen);
   const dispatch = useDispatch<AppDispatch>();
@@ -36,6 +37,13 @@ const RegisterModal = () => {
       loading: 'Registering...',
       success: <b>Account created successfully!</b>,
       error: <b>Something went wrong.</b>,
+    });
+
+    signIn('credentials', {
+      username,
+      email,
+      password,
+      redirect: false,
     });
 
     dispatch(closeSignupModal());

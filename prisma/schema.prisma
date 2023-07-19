@@ -26,9 +26,26 @@ model User {
   followingIds String[] @db.ObjectId
   hasNotifications Boolean?
 
+  accounts Account[]
   posts Post[]
   comments Comment[]
   notifications Notification[]
+}
+
+model Account {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  provider String
+  providerAccountId String
+  userId String @db.ObjectId
+  accessToken String
+  accessTokenExpires DateTime?
+  refreshToken String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
 }
 
 model Post {

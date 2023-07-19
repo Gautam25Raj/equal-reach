@@ -16,10 +16,12 @@ module.exports = {
         '.no-scrollbar::-webkit-scrollbar': {
           display: 'none',
         },
+
         '.no-scrollbar': {
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none',
         },
+
         '.text-rainbow': {
           background:
             'linear-gradient(270deg, #AE00EB 0%, #2A19F4 24.44%, #00E456 40.00%, #CEB800 60.00%, #EF6C00 80.00%, #F80029 100%)',
