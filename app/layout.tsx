@@ -5,8 +5,9 @@ import AppProvider from './Provider';
 import Sidebar from '@/components/sidebar/Sidebar';
 import LoginModal from '@/components/layout/Modals/LoginModal';
 
-import './globals.css';
 import RegisterModal from '@/components/layout/Modals/RegisterModal';
+
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
