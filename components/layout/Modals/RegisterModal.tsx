@@ -3,6 +3,7 @@
 import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-hot-toast';
 
 import { useAppSelector } from '@/store/store';
 import { AppDispatch } from '@/store/store';
@@ -24,23 +25,25 @@ const RegisterModal = () => {
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      await axios.post('/api/register', {
-        name,
-        username,
-        email,
-        password,
-      });
+    let register = axios.post('/api/register', {
+      name,
+      username,
+      email,
+      password,
+    });
 
-      dispatch(closeSignupModal());
+    await toast.promise(register, {
+      loading: 'Registering...',
+      success: <b>Account created successfully!</b>,
+      error: <b>Something went wrong.</b>,
+    });
 
-      setName('');
-      setUsername('');
-      setEmail('');
-      setPassword('');
-    } catch (err) {
-      console.log(err);
-    }
+    dispatch(closeSignupModal());
+
+    setName('');
+    setUsername('');
+    setEmail('');
+    setPassword('');
   };
 
   const handleToggle = useCallback(() => {
@@ -77,6 +80,7 @@ const RegisterModal = () => {
         <Input
           type="text"
           placeholder="Name"
+          required={true}
           value={name}
           onChange={(e) => setName(e.target.value)}
           disabled={false}
@@ -85,6 +89,7 @@ const RegisterModal = () => {
         <Input
           type="text"
           placeholder="Username"
+          required={true}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           disabled={false}
@@ -93,6 +98,7 @@ const RegisterModal = () => {
         <Input
           type="text"
           placeholder="Email"
+          required={true}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={false}
@@ -101,6 +107,7 @@ const RegisterModal = () => {
         <Input
           type="password"
           placeholder="Password"
+          required={true}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           disabled={false}

@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-
+import toast from 'react-hot-toast';
 import prisma from '@/libs/prismadb';
 import { NextResponse } from 'next/server';
 

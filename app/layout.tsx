@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import AppProvider from './Provider';
-import NextAuthProvider from './NextAuthProvider';
+import NextAuthContext from '@/context/NextAuthContext';
 
 import Sidebar from '@/components/sidebar/Sidebar';
 import LoginModal from '@/components/layout/Modals/LoginModal';
@@ -10,6 +10,7 @@ import LoginModal from '@/components/layout/Modals/LoginModal';
 import RegisterModal from '@/components/layout/Modals/RegisterModal';
 
 import './globals.css';
+import ToasterContext from '@/context/ToasterContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -56,8 +57,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextAuthProvider>
+        <NextAuthContext>
           <AppProvider>
+            <ToasterContext />
             <RegisterModal />
             <LoginModal />
             <div className="mx-auto lg:max-w-7xl max-h-screen overflow-hidden grid gap-0 grid-cols-12 lg:gap-2">
@@ -65,7 +67,7 @@ export default function RootLayout({
               {children}
             </div>
           </AppProvider>
-        </NextAuthProvider>
+        </NextAuthContext>
       </body>
     </html>
   );

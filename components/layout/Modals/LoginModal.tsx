@@ -2,30 +2,49 @@
 
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { signIn } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
 
 import { useAppSelector } from '@/store/store';
 import { AppDispatch } from '@/store/store';
 import { closeLoginModal, openSignupModal } from '@/store/slice/modalSlice';
+
 import Modal from '../Modal';
 import Input from '@/components/ui/Input';
+import { FormButton } from '@/components/ui/Button';
 
 const LoginModal = () => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   const isOpen = useAppSelector((state) => state.modalReducer.isLoginOpen);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleLogin = useCallback(async () => {
-    try {
-      setIsLoading(true);
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-      dispatch(closeLoginModal());
-    } catch (err) {
-      console.log(err);
-    }
-  }, [dispatch]);
+    signIn('credentials', {
+      username,
+      email,
+      password,
+      redirect: false,
+    }).then((callback) => {
+      if (callback?.error) {
+        toast.error(callback.error);
+      } else if (callback?.ok) {
+        toast.success('Logged in successfully!');
+        dispatch(closeLoginModal());
+        setUsername('');
+        setEmail('');
+        setPassword('');
+      }
+    });
+
+    // dispatch(closeLoginModal());
+  };
+
+  console.log(email);
 
   const handleToggle = useCallback(() => {
     dispatch(closeLoginModal());
@@ -47,21 +66,24 @@ const LoginModal = () => {
   );
 
   return (
-    <Modal
-      title="Login"
-      disabled={isLoading}
-      isOpen={isOpen}
-      footer={footer}
-      actionLabel="Sign in"
-      onSubmit={handleLogin}
-    >
-      <div className="flex flex-col gap-4">
+    <Modal title="Login" isOpen={isOpen} footer={footer} actionLabel="Sign in">
+      <form className="flex flex-col gap-4" onSubmit={handleLogin}>
         <Input
           type="text"
+          placeholder="Username"
           disabled={false}
+          required={true}
+          onChange={(e) => setUsername(e.target.value)}
+          value={username}
+        />
+
+        <Input
+          type="text"
+          placeholder="Email"
+          disabled={false}
+          required={true}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
-          placeholder="Email"
         />
 
         <Input
@@ -71,7 +93,11 @@ const LoginModal = () => {
           onChange={(e) => setPassword(e.target.value)}
           disabled={false}
         />
-      </div>
+
+        <div className="flex flex-col gap-2 py-5">
+          <FormButton type="submit" label="Log In" fullWidth />
+        </div>
+      </form>
     </Modal>
   );
 };

@@ -6,8 +6,8 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const NextAuthProvider = ({ children }: Props) => {
+const NextAuthContext = ({ children }: Props) => {
   return <SessionProvider>{children}</SessionProvider>;
 };
 
-export default NextAuthProvider;
+export default NextAuthContext;

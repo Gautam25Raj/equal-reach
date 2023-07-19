@@ -4,6 +4,7 @@ interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
   disabled?: boolean;
+  required?: boolean;
 }
 
 const Input = ({
@@ -12,10 +13,12 @@ const Input = ({
   onChange,
   type,
   disabled,
+  required,
 }: InputProps) => {
   return (
     <input
       type={type}
+      required={required}
       disabled={disabled}
       onChange={onChange}
       value={value}
