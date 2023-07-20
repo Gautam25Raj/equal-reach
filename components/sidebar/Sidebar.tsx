@@ -1,18 +1,22 @@
+'use client';
+
 import Image from 'next/image';
 import {
   BellIcon,
   HomeIcon,
   InformationCircleIcon,
   UserCircleIcon,
-  ArrowLeftOnRectangleIcon,
   UserGroupIcon,
   EllipsisHorizontalCircleIcon as DotsCircleHorizontalIcon,
 } from '@heroicons/react/24/outline';
 
 import SidebarRow from './SidebarRow';
-import { SidebarSignupButton } from '../ui/ClientButtons';
+import { SidebarLogoutButton, SidebarSignupButton } from '../ui/ClientButtons';
+import { useSession } from 'next-auth/react';
 
 const Sidebar = () => {
+  const { data: session } = useSession();
+
   return (
     <nav className="flex flex-col col-span-2 items-center mt-2 md:mt-5 mx-auto md:items-start xl:px-4">
       <Image
@@ -41,8 +45,18 @@ const Sidebar = () => {
           href="/feed/notification"
         />
 
-        <SidebarSignupButton />
-        {/* <SidebarRow Icon={DotsCircleHorizontalIcon} title="More" /> */}
+        {!!session ? (
+          <>
+            <SidebarRow
+              href="/feed/profile"
+              Icon={UserCircleIcon}
+              title="Profile"
+            />
+            <SidebarLogoutButton />
+          </>
+        ) : (
+          <SidebarSignupButton />
+        )}
       </ul>
     </nav>
   );

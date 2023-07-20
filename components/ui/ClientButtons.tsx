@@ -1,15 +1,21 @@
 'use client';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { XMarkIcon, UserIcon } from '@heroicons/react/24/outline';
+import {
+  XMarkIcon,
+  UserIcon,
+  ArrowLeftOnRectangleIcon,
+} from '@heroicons/react/24/outline';
 
-import useOpenModal from '@/hooks/useLoginModal';
+import useOpenLoginModal from '@/hooks/useLoginModal';
+import useOpenSignupModal from '@/hooks/useSignupModal';
 
 import { AppDispatch } from '@/store/store';
 import { closeLoginModal, closeSignupModal } from '@/store/slice/modalSlice';
 
 import SidebarRow from '../sidebar/SidebarRow';
 import Button from './Button';
+import { signOut } from 'next-auth/react';
 
 interface ModalCloseBtnProps {
   disabled?: boolean;
@@ -49,7 +55,7 @@ const OverlayScreen = () => {
 };
 
 const SidebarSignupButton = () => {
-  const openModal = useOpenModal();
+  const openLoginModal = useOpenLoginModal();
 
   return (
     <SidebarRow
@@ -57,22 +63,40 @@ const SidebarSignupButton = () => {
       Icon={UserIcon}
       title="Log In"
       isBtn
-      onClick={openModal}
+      onClick={openLoginModal}
+    />
+  );
+};
+
+const SidebarLogoutButton = () => {
+  return (
+    <SidebarRow
+      href=""
+      Icon={ArrowLeftOnRectangleIcon}
+      title="Log Out"
+      isBtn
+      onClick={() => signOut()}
     />
   );
 };
 
 const HeaderButton = () => {
-  const openModal = useOpenModal();
+  const openSignupModal = useOpenSignupModal();
 
   return (
     <Button
       label="Sign up Now"
-      onClick={openModal}
+      onClick={openSignupModal}
       fullWidth={false}
       disabled={false}
     />
   );
 };
 
-export { HeaderButton, SidebarSignupButton, ModalCloseBtn, OverlayScreen };
+export {
+  HeaderButton,
+  SidebarSignupButton,
+  ModalCloseBtn,
+  OverlayScreen,
+  SidebarLogoutButton,
+};
