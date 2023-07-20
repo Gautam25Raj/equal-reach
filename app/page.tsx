@@ -1,7 +1,10 @@
-import InfoCard from '@/components/InfoCard';
-import Footer from '@/components/layout/Footer';
-import PageHeader from '@/components/layout/PageHeader';
-import HomeHeader from '@/components/layout/header/HomeHeader';
+import InfoCard from "@/components/InfoCard";
+import ReadyToJoin from "@/components/ReadyToJoin";
+import Footer from "@/components/layout/Footer";
+import PageHeader from "@/components/layout/PageHeader";
+import HomeHeader from "@/components/layout/header/HomeHeader";
+
+
 
 export default async function Home() {
   return (
@@ -9,7 +12,8 @@ export default async function Home() {
       <div className="h-screen no-scrollbar no-scrollbar::-webkit-scrollbar overflow-y-auto">
         <PageHeader title="Home" isRefresh={false} />
         <HomeHeader />
-        <InfoCard />
+        <InfoCard hasBtn={true} />
+        <ReadyToJoin />
         <Footer />
       </div>
     </main>
