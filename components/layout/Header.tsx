@@ -49,7 +49,7 @@ const Header = ({
   const { text, paraStyle } = { ...paragraph };
 
   return (
-    <header className="flex mt-10 px-2 sm:px-3 justify-between items-center md:px-10">
+    <header className="flex mt-10 px-2 sm:px-3 justify-between items-center md:px-10 mb-24">
       <div className="w-full grid gap-0 grid-cols-10 lg:gap-2 items-center">
         <div className={'col-span-10 ' + colSpan1}>
           <h1 className="text-xl md:text-2xl">

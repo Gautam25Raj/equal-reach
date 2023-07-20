@@ -1,3 +1,4 @@
+import Footer from '@/components/layout/Footer';
 import PageHeader from '@/components/layout/PageHeader';
 import HomeHeader from '@/components/layout/header/HomeHeader';
 
@@ -7,6 +8,7 @@ export default async function Home() {
       <div className="h-screen no-scrollbar no-scrollbar::-webkit-scrollbar overflow-y-auto">
         <PageHeader title="Home" isRefresh={false} />
         <HomeHeader />
+        <Footer />
       </div>
     </main>
   );
