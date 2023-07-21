@@ -1,11 +1,12 @@
 'use client';
-import { useCallback } from 'react';
+import { use, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   XMarkIcon,
   UserIcon,
   ArrowLeftOnRectangleIcon,
 } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/navigation';
 
 import useOpenLoginModal from '@/hooks/useLoginModal';
 import useOpenSignupModal from '@/hooks/useSignupModal';
@@ -15,7 +16,7 @@ import { closeLoginModal, closeSignupModal } from '@/store/slice/modalSlice';
 
 import SidebarRow from '../sidebar/SidebarRow';
 import Button from './Button';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 interface ModalCloseBtnProps {
   disabled?: boolean;
@@ -82,14 +83,29 @@ const SidebarLogoutButton = () => {
 
 const HeaderButton = () => {
   const openSignupModal = useOpenSignupModal();
+  const { data: session } = useSession();
+  const router = useRouter();
 
   return (
-    <Button
-      label="Sign up Now"
-      onClick={openSignupModal}
-      fullWidth={false}
-      disabled={false}
-    />
+    <>
+      {!!session ? (
+        <Button
+          label="Explore Now"
+          onClick={() => {
+            router.push('/feed');
+          }}
+          fullWidth={false}
+          disabled={false}
+        />
+      ) : (
+        <Button
+          label="Sign up Now"
+          onClick={openSignupModal}
+          fullWidth={false}
+          disabled={false}
+        />
+      )}
+    </>
   );
 };
 

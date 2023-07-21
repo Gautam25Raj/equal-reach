@@ -33,7 +33,7 @@ interface HeaderProps {
   colSpan2: string;
 }
 
-const Header = ({
+const Header = async ({
   h1,
   svg1,
   svg2,
@@ -54,7 +54,7 @@ const Header = ({
         <div className={'col-span-10 ' + colSpan1}>
           <h1 className="text-xl md:text-2xl">
             {h1}
-            <div className={'my-4  sm:w-full sm:max-w-none ' + svg2Style}>
+            <div className={'my-4  sm:w-full sm:max-w-none ' + svg1Style}>
               <Image
                 src={svg1Path}
                 width={svg1Width}

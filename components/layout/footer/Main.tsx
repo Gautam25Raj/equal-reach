@@ -15,7 +15,7 @@ const Main = () => {
         change at both individual and systemic levels
       </p>
 
-      <div className="flex w-3/5 justify-between max-w-[270px] mb-16 md:mb-0">
+      <div className="flex w-3/5 justify-between max-w-[270px] mb-12 md:mb-0">
         <Image
           src="/footer/svg/facebook.svg"
           width={24}

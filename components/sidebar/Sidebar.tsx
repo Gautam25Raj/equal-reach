@@ -36,13 +36,24 @@ const Sidebar = () => {
       />
 
       <ul>
-        <SidebarRow Icon={HomeIcon} title="Home" href="/" />
-        <SidebarRow Icon={InformationCircleIcon} title="About" href="/about" />
-        <SidebarRow Icon={UserGroupIcon} title="Feeds" href="/feed" />
+        <SidebarRow Icon={HomeIcon} title="Home" href="/" auth={false} />
+        <SidebarRow
+          Icon={InformationCircleIcon}
+          title="About"
+          href="/about"
+          auth={true}
+        />
+        <SidebarRow
+          Icon={UserGroupIcon}
+          title="Feeds"
+          href="/feed"
+          auth={true}
+        />
         <SidebarRow
           Icon={BellIcon}
           title="Notifications"
           href="/feed/notification"
+          auth={true}
         />
 
         {!!session ? (
