@@ -17,7 +17,7 @@ const PageHeader = ({ title, isRefresh, opacity }: PageHeaderProps) => {
       <h1 className="px-5 pb-0 text-xl text-rainbow font-bold">{title}</h1>
 
       {isRefresh && (
-        <RefreshIcon className="mr-5 h-8 w-8 cursor-pointer text-twitter transition-transform duration-500 ease-out hover:rotate-180 active:scale-125" />
+        <RefreshIcon className="mr-5 h-8 w-8 cursor-pointer text-yellow-600 transition-transform duration-500 ease-out hover:rotate-180 active:scale-125" />
       )}
     </div>
   );
