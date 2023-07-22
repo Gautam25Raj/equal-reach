@@ -5,15 +5,22 @@ interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   fullWidth?: boolean;
+  secondary?: boolean;
   type?: 'submit' | 'reset' | 'button';
 }
 
-const Button = ({ label, onClick, disabled, fullWidth }: ButtonProps) => {
+const Button = ({
+  label,
+  secondary,
+  onClick,
+  disabled,
+  fullWidth,
+}: ButtonProps) => {
   return (
     <button
       className={`relative z-10 btn-rainbow py-3 px-12 text-white text-sm font-semibold uppercase tracking-widest transition-transform shadow-md duration-200 active:scale-100 hover:scale-105 group btn-shadow ${
         fullWidth ? 'w-full' : ''
-      }`}
+      } ${secondary ? 'px-5 normal-case' : ''}`}
       onClick={onClick}
       disabled={disabled}
     >

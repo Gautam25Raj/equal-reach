@@ -109,10 +109,36 @@ const HeaderButton = () => {
   );
 };
 
+const ProfileEditButton = () => {
+  return (
+    <Button
+      label="Edit"
+      secondary
+      onClick={() => {}}
+      fullWidth={false}
+      disabled={false}
+    />
+  );
+};
+
+const FollowButton = () => {
+  return (
+    <Button
+      label="Follow"
+      secondary
+      onClick={() => {}}
+      fullWidth={false}
+      disabled={false}
+    />
+  );
+};
+
 export {
   HeaderButton,
   SidebarSignupButton,
   ModalCloseBtn,
   OverlayScreen,
   SidebarLogoutButton,
+  ProfileEditButton,
+  FollowButton,
 };
