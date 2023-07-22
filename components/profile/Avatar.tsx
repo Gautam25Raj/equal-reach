@@ -25,7 +25,7 @@ const Avatar: React.FC<AvatarProps> = ({
   return (
     <div
       className={`${hasBorder ? 'border-4 border-gray-300' : ''} ${
-        isLarge ? 'h-32' : 'h-12'
+        isLarge ? 'h-32 w-32' : 'h-12 w-12'
       } rounded-full transition cursor-pointer relative hover:opacity-90`}
     >
       <Image
@@ -33,8 +33,7 @@ const Avatar: React.FC<AvatarProps> = ({
         alt="Profile picture"
         onClick={handleAvatarClick}
         className="object-cover rounded-full"
-        width={48}
-        height={48}
+        fill
       />
     </div>
   );

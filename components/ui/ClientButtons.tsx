@@ -10,9 +10,14 @@ import { useRouter } from 'next/navigation';
 
 import useOpenLoginModal from '@/hooks/useLoginModal';
 import useOpenSignupModal from '@/hooks/useSignupModal';
+import useOpenEditModal from '@/hooks/useEditModal';
 
 import { AppDispatch } from '@/store/store';
-import { closeLoginModal, closeSignupModal } from '@/store/slice/modalSlice';
+import {
+  closeLoginModal,
+  closeSignupModal,
+  closeEditModal,
+} from '@/store/slice/modalSlice';
 
 import SidebarRow from '../sidebar/SidebarRow';
 import Button from './Button';
@@ -28,6 +33,7 @@ const ModalCloseBtn = ({ disabled }: ModalCloseBtnProps) => {
   const handleClose = useCallback(() => {
     if (disabled) return;
 
+    dispatch(closeEditModal());
     dispatch(closeLoginModal());
     dispatch(closeSignupModal());
   }, [disabled, dispatch]);
@@ -110,11 +116,14 @@ const HeaderButton = () => {
 };
 
 const ProfileEditButton = () => {
+  const openEditModal = useOpenEditModal();
+  const openSignupModal = useOpenSignupModal();
+
   return (
     <Button
       label="Edit"
       secondary
-      onClick={() => {}}
+      onClick={openEditModal}
       fullWidth={false}
       disabled={false}
     />

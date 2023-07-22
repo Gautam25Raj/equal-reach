@@ -18,6 +18,7 @@ model User {
   emailVerified DateTime?
   password String?
   hashedPassword String?
+  bio String?
   image String?
   coverImage String?
   profileImage String?
