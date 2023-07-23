@@ -26,7 +26,7 @@ const Sidebar = () => {
         width={146}
         height={70}
       />
-      <ul className="flex flex-row md:flex-col">
+      <ul className="flex flex-row md:flex-col sm:[&>*]:mr-5">
         <SidebarRow Icon={HomeIcon} title="Home" href="/" auth={false} />
         <SidebarRow
           Icon={InformationCircleIcon}
