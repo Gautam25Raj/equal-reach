@@ -50,7 +50,7 @@ const SigninPage = () => {
   };
 
   const footer = (
-    <div className="text-center z-10">
+    <div className="text-center z-10 mt-5">
       <p>
         {'Already have an account? '}
         <button

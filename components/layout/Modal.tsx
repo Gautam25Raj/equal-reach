@@ -29,7 +29,7 @@ const Modal = ({
             <ModalCloseBtn />
           </div>
 
-          <div className="relative py-10 flex-auto">{children}</div>
+          <div className="relative mt-10 flex-auto">{children}</div>
 
           {footer}
         </div>
