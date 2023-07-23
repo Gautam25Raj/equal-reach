@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { toast } from 'react-hot-toast';
-import { signIn } from 'next-auth/react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
 
 import Modal from '../Modal';
 import Input from '@/components/ui/Input';
 import { FormButton } from '@/components/ui/Button';
-import { redirect, useRouter } from 'next/navigation';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('TestUser');
@@ -47,7 +47,7 @@ const LoginPage = () => {
   };
 
   const footer = (
-    <div className="text-center z-10">
+    <div className="text-center z-10 mt-5">
       <p>
         {"Don't have an Account? "}
         <button
