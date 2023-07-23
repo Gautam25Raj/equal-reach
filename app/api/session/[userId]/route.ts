@@ -7,7 +7,6 @@ export async function GET(
 ) {
   try {
     const { userId } = params;
-    console.log(userId);
 
     if (!userId || typeof userId !== 'string') {
       throw new Error('Invalid ID');
@@ -16,6 +15,19 @@ export async function GET(
     const existingUser = await prisma.user.findUnique({
       where: {
         id: userId,
+      },
+      select: {
+        id: true,
+        username: true,
+        name: true,
+        email: true,
+        profileImage: true,
+        coverImage: true,
+        createdAt: true,
+        bio: true,
+        updatedAt: true,
+        followingIds: true,
+        hasNotifications: true,
       },
     });
 

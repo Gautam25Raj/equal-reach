@@ -1,5 +1,5 @@
-import Image from "next/image";
-import TimeAgo from "react-timeago";
+import Image from 'next/image';
+import TimeAgo from 'react-timeago';
 
 interface PostContentProps {
   image: boolean;
