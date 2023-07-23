@@ -46,7 +46,9 @@ const ProfileAbout = ({
 
       <div className="mt-8">
         <div className="flex flex-col">
-          <p className="text-2xl font-semibold">{userName}</p>
+          <p className="text-2xl font-semibold text-rainbow w-fit">
+            {userName}
+          </p>
 
           <p className="text-md text-neutral-500">@{userUsername}</p>
         </div>

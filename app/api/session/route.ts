@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
-export async function GET(request: Request) {
+export async function GET() {
   const session = await getServerSession(authOptions);
 
   return NextResponse.json({

@@ -28,7 +28,7 @@ const PostsBox = ({ userId }: PostsBoxProps) => {
 
   if (isLoading || !user) {
     return (
-      <div className="flex justify-center items-center  py-24">
+      <div className="flex justify-center items-center  py-24 border-b border-gray-200">
         <ClipLoader color="text-yellow-600" size={30} />
       </div>
     );
@@ -56,7 +56,7 @@ const PostsBox = ({ userId }: PostsBoxProps) => {
   return (
     <div className="flex space-x-2 p-5">
       <Image
-        src="/favicon.ico"
+        src={user?.profileImage || '/user/placeholder.png'}
         alt="Profile Photo"
         className="mt-4 h-14 w-14 rounded-full object-cover"
         width={40}

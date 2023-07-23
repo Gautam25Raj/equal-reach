@@ -1,6 +1,6 @@
 import PageHeader from '@/components/layout/PageHeader';
 
-import Post from './Post';
+import PostsFeed from './PostsFeed';
 import PostsBox from './PostsBox';
 
 interface FeedProps {
@@ -13,7 +13,7 @@ const Feed = ({ userId }: FeedProps) => {
       <PageHeader title="Feeds" isRefresh={true} opacity />
 
       <PostsBox userId={userId} />
-      <Post />
+      <PostsFeed />
     </div>
   );
 };

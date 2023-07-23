@@ -8,7 +8,7 @@ import axios from 'axios';
 import Modal from '../Modal';
 import Input from '@/components/ui/Input';
 import { FormButton } from '@/components/ui/Button';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const SigninPage = () => {
   const [name, setName] = useState('Test User');

@@ -8,20 +8,17 @@ import {
 import Comment from './Comment';
 import PostContent from './PostContent';
 
-interface Props {}
+interface PostProps {
+  post: Record<string, any>;
+}
 
-const Posts = (props: Props) => {
+const Post = ({ post }: PostProps) => {
   const image = true;
-  const comments = [
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.',
-  ];
+  const { body, comments, createdAt, id, likes, user, userId } = post;
 
   return (
     <div className="flex flex-col space-x-3 border-y border-gray-200 p-5">
-      <PostContent image={image} />
+      <PostContent userId={userId} image={image} userData={user} body={body} />
 
       <div className="mt-5 flex justify-between">
         <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
@@ -30,7 +27,7 @@ const Posts = (props: Props) => {
 
         <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
           <ChatAlt2Icon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150" />
-          <p>5</p>
+          <p>{comments?.length}</p>
         </div>
 
         <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
@@ -46,4 +43,4 @@ const Posts = (props: Props) => {
     </div>
   );
 };
-export default Posts;
+export default Post;

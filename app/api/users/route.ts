@@ -13,8 +13,6 @@ export async function GET(res: Response) {
         username: true,
         name: true,
         email: true,
-        image: true,
-        coverImage: true,
         profileImage: true,
       },
     });

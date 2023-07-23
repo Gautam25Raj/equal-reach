@@ -24,18 +24,17 @@ const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div
-      className={`${
-        hasBorder ? 'border-4 border-gray-300 border-rainbow' : ''
-      } ${
-        isLarge ? 'h-32 w-32' : 'h-12 w-12'
+      className={`${hasBorder ? 'border-4 border-gray-600' : ''} ${
+        isLarge ? 'h-32 w-32' : 'w-12 h-12'
       } rounded-full transition cursor-pointer relative hover:opacity-90`}
     >
       <Image
         src={profileImage || '/user/placeholder.png'}
         alt="Profile picture"
         onClick={handleAvatarClick}
-        className="object-cover rounded-full"
-        fill
+        className="w-12 h-12 object-cover rounded-full"
+        width={48}
+        height={48}
       />
     </div>
   );

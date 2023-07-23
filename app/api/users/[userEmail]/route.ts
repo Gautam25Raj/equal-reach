@@ -16,6 +16,19 @@ export async function GET(
       where: {
         email: userEmail,
       },
+      select: {
+        id: true,
+        username: true,
+        name: true,
+        email: true,
+        profileImage: true,
+        coverImage: true,
+        createdAt: true,
+        bio: true,
+        updatedAt: true,
+        followingIds: true,
+        hasNotifications: true,
+      },
     });
 
     return NextResponse.json(existingUser);
