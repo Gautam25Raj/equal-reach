@@ -18,7 +18,6 @@ interface ProfileAboutProps {
 }
 
 const ProfileAbout = ({
-  userId,
   userEmail,
   userCreatedAt,
   userName,
@@ -36,7 +35,7 @@ const ProfileAbout = ({
   }, [userCreatedAt]);
 
   return (
-    <section className="border-b-[1px] border-neutral-800 pb-4 px-4">
+    <section className="border-b-[1px] border-gray-200 pb-4 px-4">
       <div className="flex justify-end p-2">
         {currentUserData?.user?.email === userEmail ? (
           <ProfileEditButton />
@@ -54,9 +53,9 @@ const ProfileAbout = ({
       </div>
 
       <div className="flex flex-col mt-4">
-        <p>{userBio}</p>
+        {userBio && <p className="mb-4">{userBio}</p>}
 
-        <div className="flex flex-row items-center gap-2 mt-4 text-neutral-500">
+        <div className="flex flex-row items-center gap-2 text-neutral-500">
           <div className="flex items-center space-x-3 text-gray-400">
             <CalendarDaysIcon className="h-5 w-5 transition-transform duration-150 ease-out hover:scale-150" />
           </div>

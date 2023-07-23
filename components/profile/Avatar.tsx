@@ -24,7 +24,9 @@ const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div
-      className={`${hasBorder ? 'border-4 border-gray-300' : ''} ${
+      className={`${
+        hasBorder ? 'border-4 border-gray-300 border-rainbow' : ''
+      } ${
         isLarge ? 'h-32 w-32' : 'h-12 w-12'
       } rounded-full transition cursor-pointer relative hover:opacity-90`}
     >

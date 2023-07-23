@@ -49,6 +49,7 @@ const OverlayScreen = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleClose = useCallback(() => {
+    dispatch(closeEditModal());
     dispatch(closeLoginModal());
     dispatch(closeSignupModal());
   }, [dispatch]);

@@ -1,9 +1,18 @@
-import { NextResponse } from 'next/server';
+'use client';
 
-const useUsers = async () => {
-  const data = await fetch(`${process.env.NEXTAUTH_URL}/api/users`);
+import useSWR from 'swr';
 
-  return NextResponse.json(data);
+import fetcher from '@/libs/fetcher';
+
+const useUsers = () => {
+  const { data, error, isLoading, mutate } = useSWR(`/api/users`, fetcher);
+
+  return {
+    data,
+    error,
+    isLoading,
+    mutate,
+  };
 };
 
 export default useUsers;
