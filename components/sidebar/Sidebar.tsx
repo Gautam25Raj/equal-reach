@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 import {
   BellIcon,
   HomeIcon,
@@ -8,17 +8,17 @@ import {
   UserCircleIcon,
   UserGroupIcon,
   EllipsisHorizontalCircleIcon as DotsCircleHorizontalIcon,
-} from '@heroicons/react/24/outline';
+} from "@heroicons/react/24/outline";
 
-import SidebarRow from './SidebarRow';
-import { SidebarLogoutButton, SidebarSignupButton } from '../ui/ClientButtons';
-import { useSession } from 'next-auth/react';
+import SidebarRow from "./SidebarRow";
+import { SidebarLogoutButton, SidebarSignupButton } from "../ui/ClientButtons";
+import { useSession } from "next-auth/react";
 
 const Sidebar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="flex flex-col col-span-2 items-center mt-2 md:mt-5 mx-auto md:items-start xl:px-4">
+    <nav className="flex flex-row md:flex-col order-last md:order-first items-center  md:mt-5 mx-auto md:items-start xl:px-4">
       <Image
         src="/equal-reach-logo.svg"
         alt="Equal Reach Logo"
@@ -26,16 +26,7 @@ const Sidebar = () => {
         width={146}
         height={70}
       />
-
-      <Image
-        src="/equal-reach-logo-sm.svg"
-        alt="Equal Reach Logo"
-        className="p-3 mb-5 md:hidden"
-        width={70}
-        height={70}
-      />
-
-      <ul>
+      <ul className="flex flex-row md:flex-col sm:[&>*]:mr-5">
         <SidebarRow Icon={HomeIcon} title="Home" href="/" auth={false} />
         <SidebarRow
           Icon={InformationCircleIcon}

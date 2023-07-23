@@ -8,7 +8,12 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        rainbow:
+          "linear-gradient(-90deg, #B100F4 0%, #5E00F8 14.29%, #363EFD 28.57%, #00C78B 42.86%, #95DB00 57.14%, #E2E700 71.43%, #FF8A00 85.71%, #F13A00 100%)",
+      },
+    },
   },
   plugins: [
     plugin(function ({ addUtilities }) {
@@ -40,6 +45,10 @@ module.exports = {
           border: ' 5px solid',
           'border-image':
             'linear-gradient(-90deg, #B100F4 0%, #5E00F8 14.29%, #363EFD 28.57%, #00C78B 42.86%, #95DB00 57.14%, #E2E700 71.43%, #FF8A00 85.71%, #F13A00 100%) 1',
+        },
+
+        ".grid-desktop": {
+          "grid-template-columns": "fit-content(100%) 1fr",
         },
       });
     }),

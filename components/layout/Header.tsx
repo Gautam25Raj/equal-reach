@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import { HeaderButton } from '@/components/ui/ClientButtons';
+import { HeaderButton } from "@/components/ui/ClientButtons";
 
 interface HeaderProps {
   h1: string;
@@ -49,12 +49,16 @@ const Header = async ({
   const { text, paraStyle } = { ...paragraph };
 
   return (
-    <header className="flex mt-10 px-2 sm:px-3 justify-between items-center md:px-10 mb-24">
+    <header className="flex mt-10 px-2 sm:px-3 justify-between items-center md:px-10 mb-12">
       <div className="w-full grid gap-0 grid-cols-10 lg:gap-2 items-center">
-        <div className={'col-span-10 ' + colSpan1}>
-          <h1 className="text-xl md:text-2xl">
+        <div className={"col-span-10 " + colSpan1}>
+          <h1 className="text-xl md:text-2xl text-center md:text-left">
             {h1}
-            <div className={'my-4  sm:w-full sm:max-w-none ' + svg1Style}>
+            <div
+              className={
+                "my-4 mx-auto sm:w-full sm:max-w-none md:mx-0 " + svg1Style
+              }
+            >
               <Image
                 src={svg1Path}
                 width={svg1Width}
@@ -62,7 +66,11 @@ const Header = async ({
                 alt={svg1Alt}
               />
             </div>
-            <div className={' sm:w-full sm:max-w-none ' + svg2Style}>
+            <div
+              className={
+                " sm:w-full mx-auto  sm:max-w-none md:mx-0 " + svg2Style
+              }
+            >
               <Image
                 src={svg2Path}
                 width={svg2Width}
@@ -72,12 +80,19 @@ const Header = async ({
             </div>
           </h1>
 
-          <p className={'text-gray-600 my-9 text-base ' + paraStyle}>{text}</p>
+          <p
+            className={
+              "text-gray-600 text-base mx-auto text-center my-9 md:text-left md:mx-0 max-w-[270px] " +
+              paraStyle
+            }
+          >
+            {text}
+          </p>
 
           {isBtn && <HeaderButton />}
         </div>
 
-        <div className={'col-span-10 sm:ml-7 lg:ml-auto ' + colSpan2}>
+        <div className={"col-span-10 sm:ml-7 lg:ml-auto mx-auto  " + colSpan2}>
           <Image
             src={imagePath}
             width={imageWidth}
