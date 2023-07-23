@@ -11,7 +11,9 @@ const ProfileHero = ({ coverImage, userId, profileImage }: ProfileProps) => {
   return (
     <section>
       <div className="bg-neutral-700 h-44 relative">
-        {coverImage && <Image src={coverImage} fill alt="Cover Image" />}
+        {coverImage && (
+          <Image src={coverImage} fill alt="Cover Image" objectFit="cover" />
+        )}
 
         <div className="absolute -bottom-16 left-4">
           <Avatar
