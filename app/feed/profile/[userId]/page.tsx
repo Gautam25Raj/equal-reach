@@ -7,6 +7,7 @@ import { ClipLoader } from 'react-spinners';
 import PageHeader from '@/components/layout/PageHeader';
 import ProfileHero from '@/components/profile/ProfileHero';
 import ProfileAbout from '@/components/profile/ProfileAbout';
+import PostsFeed from '@/components/forum/PostsFeed';
 
 const UserView = () => {
   const router = useParams();
@@ -26,8 +27,6 @@ const UserView = () => {
     );
   }
 
-  console.log(userData);
-
   return (
     <>
       <PageHeader
@@ -37,13 +36,13 @@ const UserView = () => {
       />
 
       <ProfileHero
-        userId={userData.userId}
+        userId={userData.id}
         coverImage={userData.coverImage}
         profileImage={userData.profileImage}
       />
 
       <ProfileAbout
-        userId={userData.userId}
+        userId={userData.id}
         userEmail={userData.email}
         userName={userData.name}
         userUsername={userData.username}
@@ -52,6 +51,8 @@ const UserView = () => {
         userFollowers={userData.followersCount}
         userFollowing={userData.followingIds.length}
       />
+
+      <PostsFeed userId={userData.id} />
     </>
   );
 };

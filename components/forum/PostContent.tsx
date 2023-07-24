@@ -1,35 +1,57 @@
+'use client';
+
 import Image from 'next/image';
 import Avatar from '../profile/Avatar';
+import { formatDistanceToNowStrict } from 'date-fns';
+import { useMemo } from 'react';
 
 interface PostContentProps {
   image: boolean;
   userData: Record<string, any>;
   body: string;
   userId: string;
+  createdAt: string;
 }
 
-const PostContent = ({ image, userData, body, userId }: PostContentProps) => {
-  return (
-    <div className="flex space-x-3">
-      <Avatar profileImage={userData.profileImage} userId={userId} />
+const PostContent = ({
+  image,
+  userData,
+  body,
+  userId,
+  createdAt,
+}: PostContentProps) => {
+  const createdAtDate = useMemo(() => {
+    if (!createdAt) return null;
 
-      <div className="w-full">
-        <div className="flex items-center space-x-1">
-          <p className="font-bold text-rainbow">{userData.name}</p>
-          <p className="hidden text-sm text-gray-500 sm:block">
+    return formatDistanceToNowStrict(new Date(createdAt), {
+      addSuffix: true,
+    });
+  }, [createdAt]);
+
+  return (
+    <div className="flex">
+      <div className="w-12 mr-2">
+        <Avatar profileImage={userData.profileImage} userId={userId} />
+      </div>
+
+      <div className="w-full`">
+        <div className="flex flex-col sm:items-center sm:space-x-1 sm:flex-row">
+          <p className="font-bold text-rainbow w-fit">{userData.name}</p>
+          <p className="text-sm text-gray-500 sm:block">
             {'@' + userData.username}
           </p>
+          <p className="text-gray-500 ml-auto">{createdAtDate}</p>
         </div>
 
         <p className="text-gray-600 mt-4">{body}</p>
 
         {image && (
-          <div className="border border-gray-200 rounded-xl mt-4">
+          <div className="border bg-white border-gray-200 rounded-xl mt-4 mx-auto max-w-[542px]">
             <Image
               src="/favicon.ico"
               alt="Post Image"
-              className="m-5 ml-0 mb-1 max-h-60 rounded-lg object-contain"
-              width={552}
+              className="max-h-60 rounded-lg object-contain"
+              width={542}
               height={240}
             />
           </div>

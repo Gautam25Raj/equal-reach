@@ -2,8 +2,12 @@ import usePosts from '@/hooks/usePosts';
 import ClipLoader from 'react-spinners/ClipLoader';
 import Post from './Post';
 
-const PostsFeed = () => {
-  const { data: posts = [], isLoading } = usePosts();
+interface PostsFeedProps {
+  userId?: string;
+}
+
+const PostsFeed = ({ userId }: PostsFeedProps) => {
+  const { data: posts = [], isLoading } = usePosts(userId);
 
   if (isLoading || !posts) {
     return (

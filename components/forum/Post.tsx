@@ -1,3 +1,5 @@
+'use client';
+
 import {
   HandRaisedIcon as Like,
   ChatBubbleBottomCenterIcon as ChatAlt2Icon,
@@ -7,6 +9,8 @@ import {
 
 import Comment from './Comment';
 import PostContent from './PostContent';
+import { useRouter } from 'next/navigation';
+import { useCallback } from 'react';
 
 interface PostProps {
   post: Record<string, any>;
@@ -16,12 +20,44 @@ const Post = ({ post }: PostProps) => {
   const image = true;
   const { body, comments, createdAt, id, likes, user, userId } = post;
 
+  const router = useRouter();
+
+  const goToUserProfile = (e: any) => {
+    e.stopPropagation();
+
+    router.push(`/feed/profile/${userId}`);
+  };
+
+  const goToPost = (e: any) => {
+    e.stopPropagation();
+
+    router.push(`/feed/post/${id}`);
+  };
+
+  const onLike = useCallback((e: any) => {
+    e.stopPropagation();
+
+    console.log('like');
+  }, []);
+
   return (
-    <div className="flex flex-col space-x-3 border-y border-gray-200 p-5">
-      <PostContent userId={userId} image={image} userData={user} body={body} />
+    <div
+      className="flex flex-col space-x-3 border-y border-gray-200 p-5 cursor-pointer hover:bg-gray-50 transition"
+      onClick={goToPost}
+    >
+      <PostContent
+        userId={userId}
+        image={image}
+        userData={user}
+        body={body}
+        createdAt={createdAt}
+      />
 
       <div className="mt-5 flex justify-between">
-        <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
+        <div
+          className="flex cursor-pointer items-center space-x-3 text-gray-400"
+          onClick={onLike}
+        >
           <Like className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150" />
         </div>
 

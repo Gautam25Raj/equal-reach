@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="col-span-10 lg:col-span-6 border-x border-gray-200">
+    <main className="col-span-10 lg:col-span-6 border-x border-gray-200 h-[90vh] md:h-screen no-scrollbar no-scrollbar::-webkit-scrollbar overflow-y-auto">
       <EditModal />
       {children}
     </main>
