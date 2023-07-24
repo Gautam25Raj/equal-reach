@@ -19,7 +19,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className="col-span-10 grid gap-2 grid-cols-10">
+    <div className="col-span-10 grid gap-2 grid-cols-10 h-[90vh] md:h-screen no-scrollbar no-scrollbar::-webkit-scrollbar overflow-y-auto">
       {children}
       <Widgets />
     </div>

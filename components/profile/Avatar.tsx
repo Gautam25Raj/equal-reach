@@ -18,7 +18,9 @@ const Avatar: React.FC<AvatarProps> = ({
 }) => {
   const router = useRouter();
 
-  const handleAvatarClick = () => {
+  const handleAvatarClick = (e: any) => {
+    e.stopPropagation();
+
     router.push(`/feed/profile/${userId}`);
   };
 
@@ -32,9 +34,8 @@ const Avatar: React.FC<AvatarProps> = ({
         src={profileImage || '/user/placeholder.png'}
         alt="Profile picture"
         onClick={handleAvatarClick}
-        className="w-12 h-12 object-cover rounded-full"
-        width={48}
-        height={48}
+        className="object-cover rounded-full"
+        fill
       />
     </div>
   );

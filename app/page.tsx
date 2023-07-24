@@ -1,9 +1,8 @@
-import InfoCard from "@/components/InfoCard";
-import ReadyToJoin from "@/components/ReadyToJoin";
-import Footer from "@/components/layout/Footer";
-import PageHeader from "@/components/layout/PageHeader";
-import HomeHeader from "@/components/layout/header/HomeHeader";
-import User from "@/components/user.component";
+import InfoCard from '@/components/InfoCard';
+import ReadyToJoin from '@/components/ReadyToJoin';
+import Footer from '@/components/layout/Footer';
+import PageHeader from '@/components/layout/PageHeader';
+import HomeHeader from '@/components/layout/header/HomeHeader';
 
 export default async function Home() {
   return (
@@ -17,8 +16,9 @@ export default async function Home() {
             More People <br /> More Impact
           </h2>
           <p className="py-8 lg:text-base max-w-xl md:px-10 xl:pl-16 md:text-md md:text-left">
-            "Join the Collective for Social Equality: Together, We Create a
-            Stronger Voice, Amplify Impact, and Make a Meaningful Difference."
+            &quot;Join the Collective for Social Equality: Together, We Create a
+            Stronger Voice, Amplify Impact, and Make a Meaningful
+            Difference.&quot;
           </p>
 
           <button

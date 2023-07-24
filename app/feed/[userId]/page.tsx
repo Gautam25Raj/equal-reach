@@ -8,7 +8,7 @@ const Page = () => {
   const { userId } = router;
 
   return (
-    <main className="col-span-10 lg:col-span-6">
+    <main className="col-span-10 lg:col-span-6 h-[90vh] md:h-screen">
       <Feed userId={userId} />
     </main>
   );

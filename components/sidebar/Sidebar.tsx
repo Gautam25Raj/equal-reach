@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 import {
   BellIcon,
   HomeIcon,
@@ -8,17 +8,17 @@ import {
   UserCircleIcon,
   UserGroupIcon,
   EllipsisHorizontalCircleIcon as DotsCircleHorizontalIcon,
-} from "@heroicons/react/24/outline";
+} from '@heroicons/react/24/outline';
 
-import SidebarRow from "./SidebarRow";
-import { SidebarLogoutButton, SidebarSignupButton } from "../ui/ClientButtons";
-import { useSession } from "next-auth/react";
+import SidebarRow from './SidebarRow';
+import { SidebarLogoutButton, SidebarSignupButton } from '../ui/ClientButtons';
+import { useSession } from 'next-auth/react';
 
 const Sidebar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="flex flex-row md:flex-col order-last md:order-first items-center  md:mt-5 mx-auto md:items-start xl:px-4">
+    <nav className="flex flex-row md:flex-col order-last md:order-first items-center md:mt-5 md:items-start xl:px-4 h-[10vh] w-full justify-center md:justify-normal border-t border-gray-200 md:border-t-0">
       <Image
         src="/equal-reach-logo.svg"
         alt="Equal Reach Logo"

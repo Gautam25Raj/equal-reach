@@ -9,7 +9,7 @@ interface FeedProps {
 
 const Feed = ({ userId }: FeedProps) => {
   return (
-    <div className="col-span-10 lg:col-span-6 h-screen no-scrollbar no-scrollbar::-webkit-scrollbar overflow-y-auto border-x border-gray-200">
+    <div className="col-span-10 lg:col-span-6 border-x border-gray-200">
       <PageHeader title="Feeds" isRefresh={true} opacity />
 
       <PostsBox userId={userId} />
