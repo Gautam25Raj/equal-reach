@@ -27,6 +27,11 @@ interface ModalCloseBtnProps {
   disabled?: boolean;
 }
 
+interface FollowButtonProps {
+  label: string;
+  onClick: () => void;
+}
+
 const ModalCloseBtn = ({ disabled }: ModalCloseBtnProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -118,7 +123,6 @@ const HeaderButton = () => {
 
 const ProfileEditButton = () => {
   const openEditModal = useOpenEditModal();
-  const openSignupModal = useOpenSignupModal();
 
   return (
     <Button
@@ -131,12 +135,12 @@ const ProfileEditButton = () => {
   );
 };
 
-const FollowButton = () => {
+const FollowButton = ({ label, onClick }: FollowButtonProps) => {
   return (
     <Button
-      label="Follow"
+      label={label}
       secondary
-      onClick={() => {}}
+      onClick={onClick}
       fullWidth={false}
       disabled={false}
     />

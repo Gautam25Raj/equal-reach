@@ -27,6 +27,7 @@ export async function GET(
         bio: true,
         updatedAt: true,
         followingIds: true,
+        followersIds: true,
         hasNotifications: true,
       },
     });

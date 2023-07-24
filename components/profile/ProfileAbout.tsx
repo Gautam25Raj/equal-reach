@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { useMemo } from 'react';
 import { FollowButton, ProfileEditButton } from '../ui/ClientButtons';
 import { CalendarDaysIcon } from '@heroicons/react/24/outline';
+import useFollow from '@/hooks/useFollow';
 
 interface ProfileAboutProps {
   userId: string;
@@ -18,6 +19,7 @@ interface ProfileAboutProps {
 }
 
 const ProfileAbout = ({
+  userId,
   userEmail,
   userCreatedAt,
   userName,
@@ -27,6 +29,9 @@ const ProfileAbout = ({
   userFollowing,
 }: ProfileAboutProps) => {
   const { data: currentUserData } = useSession();
+
+  const { isFollowing, toggleFollow } = useFollow(userId);
+  console.log(isFollowing);
 
   const createdAt = useMemo(() => {
     if (userCreatedAt) {
@@ -40,7 +45,10 @@ const ProfileAbout = ({
         {currentUserData?.user?.email === userEmail ? (
           <ProfileEditButton />
         ) : (
-          <FollowButton />
+          <FollowButton
+            onClick={toggleFollow}
+            label={isFollowing ? 'Unsupport' : 'Support'}
+          />
         )}
       </div>
 

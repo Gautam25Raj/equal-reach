@@ -14,6 +14,7 @@ const UserView = () => {
   const { userId } = router;
 
   const { data: userData, isLoading } = useUser(userId);
+  console.log(userData);
 
   if (isLoading || !userData) {
     return (
@@ -48,7 +49,7 @@ const UserView = () => {
         userUsername={userData.username}
         userCreatedAt={userData.createdAt}
         userBio={userData.bio}
-        userFollowers={userData.followersCount}
+        userFollowers={userData.followersIds.length}
         userFollowing={userData.followingIds.length}
       />
 
