@@ -4,9 +4,10 @@ import Post from './Post';
 
 interface PostsFeedProps {
   userId?: string;
+  currentUserId: string;
 }
 
-const PostsFeed = ({ userId }: PostsFeedProps) => {
+const PostsFeed = ({ userId, currentUserId }: PostsFeedProps) => {
   const { data: posts = [], isLoading } = usePosts(userId);
 
   if (isLoading || !posts) {
@@ -20,7 +21,7 @@ const PostsFeed = ({ userId }: PostsFeedProps) => {
   return (
     <>
       {posts.map((post: Record<string, any>) => (
-        <Post key={post.id} post={post} />
+        <Post key={post.id} post={post} currentUserId={currentUserId} />
       ))}
     </>
   );

@@ -52,7 +52,7 @@ const UserView = () => {
         userFollowing={userData.followingIds.length}
       />
 
-      <PostsFeed userId={userData.id} />
+      <PostsFeed currentUserId={userData.id} userId={userData.id} />
     </>
   );
 };
