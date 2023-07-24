@@ -54,7 +54,7 @@ const PostsBox = ({ userId }: PostsBoxProps) => {
   };
 
   return (
-    <div className="flex space-x-2 p-5">
+    <div className="flex space-x-2 p-5 border-b border-gray-200">
       <Image
         src={user?.profileImage || '/user/placeholder.png'}
         alt="Profile Photo"
@@ -75,10 +75,10 @@ const PostsBox = ({ userId }: PostsBoxProps) => {
           <div className="flex items-center">
             <div className="flex flex-1 space-x-2 text-twitter">
               <PhotoIcon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150 hover:text-twitter-hover" />
-              <MagnifyingGlassCircleIcon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150 hover:text-twitter-hover" />
+              {/* <MagnifyingGlassCircleIcon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150 hover:text-twitter-hover" />
               <FaceSmileIcon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150 hover:text-twitter-hover" />
               <CalendarIcon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150 hover:text-twitter-hover" />
-              <MapPinIcon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150 hover:text-twitter-hover" />
+              <MapPinIcon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150 hover:text-twitter-hover" /> */}
             </div>
 
             <button

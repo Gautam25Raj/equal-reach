@@ -31,7 +31,6 @@ const ProfileAbout = ({
   const { data: currentUserData } = useSession();
 
   const { isFollowing, toggleFollow } = useFollow(userId);
-  console.log(isFollowing);
 
   const createdAt = useMemo(() => {
     if (userCreatedAt) {
@@ -41,7 +40,7 @@ const ProfileAbout = ({
 
   return (
     <section className="border-b-[1px] border-gray-200 pb-4 px-4">
-      <div className="flex justify-end p-2">
+      <div className="flex justify-end p-2 w-fit ml-auto md:w-full">
         {currentUserData?.user?.email === userEmail ? (
           <ProfileEditButton />
         ) : (

@@ -24,7 +24,7 @@ const PageHeader = ({ title, isRefresh, opacity }: PageHeaderProps) => {
           height={40}
         />
 
-        <h1 className="md:pb-2 text-xl text-rainbow font-bold">{title}</h1>
+        <h1 className="text-xl text-rainbow font-bold">{title}</h1>
       </div>
       {isRefresh && (
         <RefreshIcon className="mr-0 md:mr-5 h-8 w-8 cursor-pointer text-yellow-600 transition-transform duration-500 ease-out hover:rotate-180 active:scale-125" />

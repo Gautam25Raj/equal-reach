@@ -9,7 +9,7 @@ interface FeedProps {
 
 const Feed = ({ userId }: FeedProps) => {
   return (
-    <div className="col-span-10 lg:col-span-6 border-x border-gray-200">
+    <div className="col-span-10 lg:col-span-6">
       <PageHeader title="Feeds" isRefresh={true} opacity />
 
       <PostsBox userId={userId} />

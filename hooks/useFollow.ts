@@ -13,10 +13,6 @@ const useFollow = (userId: string) => {
     session?.user?.email
   );
   const { mutate: mutateUser } = useUser(userId);
-  console.log('currentUser', currentUser);
-  console.log('userId', userId);
-  console.log('Following: ' + currentUser?.followingIds);
-  console.log(currentUser?.followingIds.includes(userId));
 
   const isFollowing = useMemo(() => {
     const list = currentUser?.followingIds || [];

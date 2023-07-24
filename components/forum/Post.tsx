@@ -31,7 +31,7 @@ const Post = ({ post }: PostProps) => {
   const goToPost = (e: any) => {
     e.stopPropagation();
 
-    router.push(`/feed/post/${id}`);
+    router.push(`/posts/${id}`);
   };
 
   const onLike = useCallback((e: any) => {
@@ -42,7 +42,7 @@ const Post = ({ post }: PostProps) => {
 
   return (
     <div
-      className="flex flex-col space-x-3 border-y border-gray-200 p-5 cursor-pointer hover:bg-gray-50 transition"
+      className="flex flex-col space-x-3 border-b border-gray-200 p-5 cursor-pointer hover:bg-gray-50 transition"
       onClick={goToPost}
     >
       <PostContent

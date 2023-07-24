@@ -40,7 +40,7 @@ const PostContent = ({
           <p className="text-sm text-gray-500 sm:block">
             {'@' + userData.username}
           </p>
-          <p className="text-gray-500 ml-auto">{createdAtDate}</p>
+          <p className="text-gray-500 text-sm">{createdAtDate}</p>
         </div>
 
         <p className="text-gray-600 mt-4">{body}</p>

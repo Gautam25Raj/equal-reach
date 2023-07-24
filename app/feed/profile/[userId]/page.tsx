@@ -14,7 +14,6 @@ const UserView = () => {
   const { userId } = router;
 
   const { data: userData, isLoading } = useUser(userId);
-  console.log(userData);
 
   if (isLoading || !userData) {
     return (
