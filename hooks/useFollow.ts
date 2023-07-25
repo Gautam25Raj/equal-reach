@@ -1,5 +1,3 @@
-import useSWR from 'swr';
-import fetcher from '@/libs/fetcher';
 import { useMemo, useCallback } from 'react';
 import useUser from './useUser';
 import { toast } from 'react-hot-toast';

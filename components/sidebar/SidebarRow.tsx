@@ -31,7 +31,7 @@ const SidebarRow = ({
     <div className="flex max-w-fit cursor-pointer items-center space-x-2 px-4 py-3 rounded-full transition-all duration-200 hover:bg-pink-50 group">
       <Icon className="h-6 w-6" />
 
-      <p className="hidden group-hover:font-medium group-hover:text-rainbow text-base md:block lg:text-xl">
+      <p className="hidden group-hover:text-rainbow text-base md:block lg:text-xl">
         {title}
       </p>
     </div>

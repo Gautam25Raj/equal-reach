@@ -13,7 +13,7 @@ const Feed = ({ userId }: FeedProps) => {
       <PageHeader title="Feeds" isRefresh={true} opacity />
 
       <PostsBox userId={userId} />
-      <PostsFeed />
+      <PostsFeed currentUserId={userId} />
     </div>
   );
 };

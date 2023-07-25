@@ -1,26 +1,31 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
 import {
   HandRaisedIcon as Like,
   ChatBubbleBottomCenterIcon as ChatAlt2Icon,
   ArrowUpTrayIcon as UploadIcon,
   ArrowsRightLeftIcon as SwitchHorizontalIcon,
 } from '@heroicons/react/24/outline';
+import { HandRaisedIcon as LikeSolid } from '@heroicons/react/24/solid';
 
 import Comment from './Comment';
 import PostContent from './PostContent';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
+import useLike from '@/hooks/useLike';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 interface PostProps {
   post: Record<string, any>;
+  currentUserId: string;
 }
 
-const Post = ({ post }: PostProps) => {
+const Post = ({ post, currentUserId }: PostProps) => {
   const image = true;
-  const { body, comments, createdAt, id, likes, user, userId } = post;
-
+  const { body, comments, createdAt, id, likedIds, user, userId } = post;
   const router = useRouter();
+  const { hasLiked, toggleLike } = useLike(id, userId, currentUserId);
 
   const goToUserProfile = (e: any) => {
     e.stopPropagation();
@@ -34,11 +39,20 @@ const Post = ({ post }: PostProps) => {
     router.push(`/posts/${id}`);
   };
 
-  const onLike = useCallback((e: any) => {
-    e.stopPropagation();
+  const onLike = useCallback(
+    (e: any) => {
+      e.stopPropagation();
 
-    console.log('like');
-  }, []);
+      toggleLike();
+    },
+    [toggleLike]
+  );
+
+  const LikedIcon = hasLiked ? (
+    <LikeSolid className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150 text-red-500" />
+  ) : (
+    <Like className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150 hover:text-red-500" />
+  );
 
   return (
     <div
@@ -53,25 +67,18 @@ const Post = ({ post }: PostProps) => {
         createdAt={createdAt}
       />
 
-      <div className="mt-5 flex justify-between">
+      <div className="mt-5 flex">
         <div
           className="flex cursor-pointer items-center space-x-3 text-gray-400"
           onClick={onLike}
         >
-          <Like className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150" />
+          {LikedIcon}
+          <p>{likedIds?.length}</p>
         </div>
 
-        <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
+        <div className="flex cursor-pointer items-center space-x-3 text-gray-400 ml-12">
           <ChatAlt2Icon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150" />
           <p>{comments?.length}</p>
-        </div>
-
-        <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
-          <SwitchHorizontalIcon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150" />
-        </div>
-
-        <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
-          <UploadIcon className="h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150" />
         </div>
       </div>
 
