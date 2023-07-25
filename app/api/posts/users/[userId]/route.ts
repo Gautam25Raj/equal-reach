@@ -43,12 +43,13 @@ export async function POST(
 ) {
   try {
     const { userId } = params;
-    const { body } = await req.json();
+    const { body, image } = await req.json();
 
     const post = await prisma.post.create({
       data: {
         body,
         userId,
+        image,
       },
     });
 

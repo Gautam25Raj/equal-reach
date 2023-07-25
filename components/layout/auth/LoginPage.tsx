@@ -1,19 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { toast } from 'react-hot-toast';
 
-import Modal from '../Modal';
 import Input from '@/components/ui/Input';
 import { FormButton } from '@/components/ui/Button';
+import PageHeader from '../PageHeader';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('TestUser');
   const [email, setEmail] = useState('testuser@equalreach.com');
-  const [password, setPassword] = useState('12345678');
+  const [password, setPassword] = useState('equalreach1234');
 
   const router = useRouter();
 
@@ -26,18 +25,18 @@ const LoginPage = () => {
         email,
         password,
         redirect: false,
-      }).then((callback) => {
-        if (callback?.error) {
-          toast.error(callback.error);
-          throw new Error(callback.error);
-        } else if (callback?.ok) {
-          setUsername('');
-          setEmail('');
-          setPassword('');
-
-          router.push('/feed');
-        }
-      }),
+      })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error(callback.error);
+            throw new Error(callback.error);
+          } else if (callback?.ok) {
+            setUsername('');
+            setEmail('');
+            setPassword('');
+          }
+        })
+        .then(() => router.push('/feed')),
       {
         loading: 'Logging In...',
         success: <b>Logged in successfully!</b>,
@@ -46,7 +45,7 @@ const LoginPage = () => {
     );
   };
 
-  const footer = (
+  const Footer = () => (
     <div className="text-center z-10 mt-5">
       <p>
         {"Don't have an Account? "}
@@ -54,35 +53,17 @@ const LoginPage = () => {
           className="text-rainbow hover:scale-105 hover:font-semibold transition-transform duration-200"
           onClick={() => router.push('/register')}
         >
-          Sign In
+          Sign Up
         </button>
       </p>
     </div>
   );
 
   return (
-    <Modal title="Login" isOpen={true} footer={footer} actionLabel="Sign in">
-      <>
-        <button
-          className="flex mx-auto mb-10 items-center rounded-md py-3 px-4 transition-all duration-300 ease-in-ou bg-gray-100 hover:bg-gray-200"
-          onClick={() => signIn('github')}
-        >
-          <Image
-            className="mr-2"
-            src="/home/svg/github.svg"
-            alt="GitHub"
-            width="20"
-            height="20"
-          />
-          Sign in with GitHub
-        </button>
+    <section className="border-x border-gray-200">
+      <PageHeader title="Log In" />
 
-        <div className="flex items-center justify-center">
-          <span className="h-0.5 flex-1 bg-gray-100"></span>
-          <span className="text-gray-400 px-2">or</span>
-          <span className="h-0.5 flex-1 bg-gray-100"></span>
-        </div>
-
+      <div className="w-5/6 h-[90vh] md:h-screen md:max-w-md mx-auto mt-20">
         <form className="flex flex-col gap-4 mt-10" onSubmit={handleLogin}>
           <Input
             type="text"
@@ -114,8 +95,10 @@ const LoginPage = () => {
             <FormButton type="submit" label="Log In" fullWidth />
           </div>
         </form>
-      </>
-    </Modal>
+
+        <Footer />
+      </div>
+    </section>
   );
 };
 

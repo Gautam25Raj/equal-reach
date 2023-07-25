@@ -7,7 +7,7 @@ import { formatDistanceToNowStrict } from 'date-fns';
 import { useMemo } from 'react';
 
 interface PostContentProps {
-  image: boolean;
+  image: string;
   userData: Record<string, any>;
   body: string;
   userId: string;
@@ -73,11 +73,11 @@ const PostContent = ({
         {image && (
           <div className="border bg-white border-gray-200 rounded-xl mt-4 mx-auto max-w-[542px]">
             <Image
-              src="/favicon.ico"
+              src={image}
               alt="Post Image"
-              className="max-h-60 rounded-lg object-contain"
+              className="max-h-80 rounded-lg object-contain"
               width={542}
-              height={240}
+              height={320}
             />
           </div>
         )}

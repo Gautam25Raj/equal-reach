@@ -12,12 +12,11 @@ import { closeLoginModal, openSignupModal } from '@/store/slice/modalSlice';
 import Modal from '../Modal';
 import Input from '@/components/ui/Input';
 import { FormButton } from '@/components/ui/Button';
-import Image from 'next/image';
 
 const LoginModal = () => {
   const [username, setUsername] = useState('TestUser');
   const [email, setEmail] = useState('testuser@equalreach.com');
-  const [password, setPassword] = useState('12345678');
+  const [password, setPassword] = useState('equalreach1234');
 
   const isOpen = useAppSelector((state) => state.modalReducer.isLoginOpen);
   const dispatch = useDispatch<AppDispatch>();
@@ -72,26 +71,6 @@ const LoginModal = () => {
   return (
     <Modal title="Login" isOpen={isOpen} footer={footer} actionLabel="Sign in">
       <>
-        <button
-          className="flex mx-auto mb-10 items-center rounded-md py-3 px-4 transition-all duration-300 ease-in-ou bg-gray-100 hover:bg-gray-200"
-          onClick={() => signIn('github')}
-        >
-          <Image
-            className="mr-2"
-            src="/home/svg/github.svg"
-            alt="GitHub"
-            width="20"
-            height="20"
-          />
-          Sign in with GitHub
-        </button>
-
-        <div className="flex items-center justify-center">
-          <span className="h-0.5 flex-1 bg-gray-100"></span>
-          <span className="text-gray-400 px-2">or</span>
-          <span className="h-0.5 flex-1 bg-gray-100"></span>
-        </div>
-
         <form className="flex flex-col gap-4 mt-10" onSubmit={handleLogin}>
           <Input
             type="text"
