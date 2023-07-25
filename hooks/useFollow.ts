@@ -41,8 +41,7 @@ const useFollow = (userId: string) => {
       mutateUser();
 
       if (isFollowing) toast.success('Unsupported successfully');
-
-      toast.success('Supporting successfully');
+      else toast.success('Supporting successfully');
     } catch (error) {
       toast.error('Something went wrong');
     }
