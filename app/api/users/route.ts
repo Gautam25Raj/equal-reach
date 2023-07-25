@@ -1,8 +1,7 @@
 import prisma from '@/libs/prismadb';
-import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-export async function GET(res: Response) {
+export async function GET() {
   try {
     const users = await prisma.user.findMany({
       orderBy: {
@@ -16,8 +15,6 @@ export async function GET(res: Response) {
         profileImage: true,
       },
     });
-
-    console.log(headers);
 
     return NextResponse.json(users);
   } catch (error) {

@@ -1,6 +1,6 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-import { HeaderButton } from "@/components/ui/ClientButtons";
+import { HeaderButton } from '@/components/ui/ClientButtons';
 
 interface HeaderProps {
   h1: string;
@@ -51,12 +51,12 @@ const Header = async ({
   return (
     <header className="flex mt-10 px-2 sm:px-3 justify-between items-center md:px-10 mb-12">
       <div className="w-full grid gap-0 grid-cols-10 lg:gap-2 items-center">
-        <div className={"col-span-10 " + colSpan1}>
-          <h1 className="text-xl md:text-2xl text-center md:text-left">
+        <div className={'col-span-10 ' + colSpan1}>
+          <h1 className="text-xl md:text-2xl text-center sm:text-left">
             {h1}
             <div
               className={
-                "my-4 mx-auto sm:w-full sm:max-w-none md:mx-0 " + svg1Style
+                'my-4 mx-auto sm:w-full sm:max-w-none md:mx-0 ' + svg1Style
               }
             >
               <Image
@@ -68,7 +68,7 @@ const Header = async ({
             </div>
             <div
               className={
-                " sm:w-full mx-auto  sm:max-w-none md:mx-0 " + svg2Style
+                ' sm:w-full mx-auto  sm:max-w-none md:mx-0 ' + svg2Style
               }
             >
               <Image
@@ -82,7 +82,7 @@ const Header = async ({
 
           <p
             className={
-              "text-gray-600 text-base mx-auto text-center my-9 md:text-left md:mx-0 max-w-[270px] " +
+              'text-gray-600 text-base mx-auto text-center my-9 md:text-left md:mx-0 max-w-[270px] ' +
               paraStyle
             }
           >
@@ -92,7 +92,7 @@ const Header = async ({
           {isBtn && <HeaderButton />}
         </div>
 
-        <div className={"col-span-10 sm:ml-7 lg:ml-auto mx-auto  " + colSpan2}>
+        <div className={'col-span-10 sm:ml-7 lg:ml-auto mx-auto  ' + colSpan2}>
           <Image
             src={imagePath}
             width={imageWidth}

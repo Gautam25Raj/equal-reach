@@ -1,4 +1,4 @@
-import Image from "../public/home/Image.png";
+import Image from 'next/image';
 
 const ReadyToJoin = () => {
   return (
@@ -24,7 +24,7 @@ const ReadyToJoin = () => {
         </ul>
       </div>
       <div className="lg:w-[50%] xl:w-[60%]">
-        <img src={Image.src} alt="" />
+        <Image src="/home/Image.png" alt="" width={600} height={470} />
       </div>
     </div>
   );
