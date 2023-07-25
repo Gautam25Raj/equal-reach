@@ -21,7 +21,18 @@ export async function GET(
             profileImage: true,
           },
         },
-        comments: true,
+        comments: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                username: true,
+                profileImage: true,
+              },
+            },
+          },
+        },
       },
       orderBy: {
         createdAt: 'desc',

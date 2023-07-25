@@ -23,6 +23,7 @@ const Comment = ({
   user,
 }: CommentsProps) => {
   const router = useRouter();
+  console.log(user);
 
   const createdAtDate = useMemo(() => {
     if (!createdAt) return null;
@@ -57,13 +58,13 @@ const Comment = ({
               className="mr-1 font-bold hover:underline"
               onClick={goToUserProfile}
             >
-              {user.name}
+              {user?.name}
             </p>
             <p
               className="hidden text-sm text-gray-500 lg:block hover:underline"
               onClick={goToUserProfile}
             >
-              {user.username}
+              {user?.username}
             </p>
             <p className="text-gray-500 text-xs">{createdAtDate}</p>
           </div>

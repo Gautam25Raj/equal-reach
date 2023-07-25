@@ -18,6 +18,11 @@ const PostsFeed = ({ userId, currentUserId }: PostsFeedProps) => {
     );
   }
 
+  if (posts.length === 0)
+    return (
+      <div className="text-gray-600 text-center mt-10">No Posts to Show</div>
+    );
+
   return (
     <>
       {posts.map((post: Record<string, any>) => (
