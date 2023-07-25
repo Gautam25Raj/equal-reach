@@ -35,8 +35,12 @@ const Page = () => {
     <div className="col-span-10 lg:col-span-6 border-x border-gray-200">
       <PageHeader title={'Posts'} isRefresh={true} opacity />
 
-      <Post currentUserId={currentUser.id} post={postData} />
-      <CommentBox userId={postData.userId} />
+      <Post
+        currentUserId={currentUser.id}
+        post={postData}
+        isOpenComment={true}
+      />
+      <CommentBox postId={postData.id} currentUser={currentUser} />
     </div>
   );
 };

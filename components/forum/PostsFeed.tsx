@@ -21,7 +21,12 @@ const PostsFeed = ({ userId, currentUserId }: PostsFeedProps) => {
   return (
     <>
       {posts.map((post: Record<string, any>) => (
-        <Post key={post.id} post={post} currentUserId={currentUserId} />
+        <Post
+          key={post.id}
+          post={post}
+          currentUserId={currentUserId}
+          isOpenComment={false}
+        />
       ))}
     </>
   );

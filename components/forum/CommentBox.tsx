@@ -9,33 +9,40 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import useUser from '@/hooks/useUser';
 import usePosts from '@/hooks/usePosts';
 import useLike from '@/hooks/useLike';
+import usePost from '@/hooks/usePost';
 
 interface CommentBoxProps {
-  userId: string;
+  currentUser: any;
+  postId: string;
 }
 
-const CommentBox = ({ userId }: CommentBoxProps) => {
-  const { data: user, isLoading } = useUser(userId);
+const CommentBox = ({ currentUser, postId }: CommentBoxProps) => {
+  // const { data: user, isLoading } = useUser(userId);
   const { mutate: mutatePosts } = usePosts();
+  const { mutate: mutatePost } = usePost(postId);
   // const like = useLike('fksfjkjxfk', 'fksfjkjxfk');
 
   const [comment, setComment] = useState('');
 
-  if (isLoading || !user) {
-    return (
-      <div className="flex justify-center items-center  py-24 border-b border-gray-200">
-        <ClipLoader color="text-yellow-600" size={30} />
-      </div>
-    );
-  }
+  // if (isLoading || !user) {
+  //   return (
+  //     <div className="flex justify-center items-center  py-24 border-b border-gray-200">
+  //       <ClipLoader color="text-yellow-600" size={30} />
+  //     </div>
+  //   );
+  // }
 
   const handleComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      let updatePost = axios.post(`/api/posts/users/${userId}`, { comment });
+      let updateComment = axios.post(`/api/comments`, {
+        postId,
+        body: comment,
+        userId: currentUser.id,
+      });
 
-      await toast.promise(updatePost, {
+      await toast.promise(updateComment, {
         loading: 'Uploading...',
         success: <b>Comment uploaded successfully!</b>,
         error: <b>Something went wrong.</b>,
@@ -43,6 +50,7 @@ const CommentBox = ({ userId }: CommentBoxProps) => {
 
       setComment('');
       mutatePosts();
+      mutatePost();
     } catch (error) {
       toast.error('Something went wrong!');
     }
@@ -51,7 +59,7 @@ const CommentBox = ({ userId }: CommentBoxProps) => {
   return (
     <div className="flex space-x-2 px-5 py-2 border-b border-gray-200">
       <Image
-        src={user?.profileImage || '/user/placeholder.png'}
+        src={currentUser?.profileImage || '/user/placeholder.png'}
         alt="Profile Photo"
         className="mt-4 h-10 w-10 rounded-full object-cover"
         width={40}
