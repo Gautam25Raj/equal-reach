@@ -3,16 +3,14 @@
 import {
   HandRaisedIcon as Like,
   ChatBubbleBottomCenterIcon as ChatAlt2Icon,
-  ArrowUpTrayIcon as UploadIcon,
-  ArrowsRightLeftIcon as SwitchHorizontalIcon,
 } from '@heroicons/react/24/outline';
 import { HandRaisedIcon as LikeSolid } from '@heroicons/react/24/solid';
 
 import Comment from './Comment';
 import PostContent from './PostContent';
-import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import useLike from '@/hooks/useLike';
+import Link from 'next/link';
 
 interface PostProps {
   post: Record<string, any>;
@@ -21,10 +19,10 @@ interface PostProps {
 }
 
 const Post = ({ post, currentUserId, isOpenComment }: PostProps) => {
-  const image = true;
+  const image = post.image ? post.image : null;
   const { body, comments, createdAt, id, likedIds, user, userId } = post;
   const { hasLiked, toggleLike } = useLike(id, userId, currentUserId);
-  const [isComment, setIsComment] = useState(false);
+  const [isComment, setIsComment] = useState(isOpenComment);
 
   const onLike = useCallback(
     (e: any) => {
@@ -91,7 +89,12 @@ const Post = ({ post, currentUserId, isOpenComment }: PostProps) => {
               />
             ))
           ) : (
-            <div>No Comments to Show</div>
+            <div className="flex">
+              <p className="text-gray-600">No Comments to Show: </p>
+              <Link href={`/posts/${id}`} className="underline">
+                Be the first to comment.
+              </Link>
+            </div>
           )}
         </div>
       )}

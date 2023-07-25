@@ -5,16 +5,16 @@ import { toast } from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
 import axios from 'axios';
 
-import Modal from '../Modal';
 import Input from '@/components/ui/Input';
 import { FormButton } from '@/components/ui/Button';
 import { useRouter } from 'next/navigation';
+import PageHeader from '../PageHeader';
 
 const SigninPage = () => {
   const [name, setName] = useState('Test User');
   const [username, setUsername] = useState('TestUser');
   const [email, setEmail] = useState('testuser@equalreach.com');
-  const [password, setPassword] = useState('12345678');
+  const [password, setPassword] = useState('equalreach1234');
 
   const router = useRouter();
 
@@ -34,22 +34,34 @@ const SigninPage = () => {
       error: <b>Something went wrong.</b>,
     });
 
-    signIn('credentials', {
-      username,
-      email,
-      password,
-      redirect: false,
-    });
+    await toast.promise(
+      signIn('credentials', {
+        username,
+        email,
+        password,
+        redirect: false,
+      }).then((callback) => {
+        if (callback?.error) {
+          toast.error(callback.error);
+          throw new Error(callback.error);
+        } else if (callback?.ok) {
+          setName('');
+          setUsername('');
+          setEmail('');
+          setPassword('');
 
-    setName('');
-    setUsername('');
-    setEmail('');
-    setPassword('');
-
-    router.push('/feed');
+          router.push('/feed');
+        }
+      }),
+      {
+        loading: 'Logging In...',
+        success: <b>Logged in successfully!</b>,
+        error: <b>Try again!</b>,
+      }
+    );
   };
 
-  const footer = (
+  const Footer = () => (
     <div className="text-center z-10 mt-5">
       <p>
         {'Already have an account? '}
@@ -64,13 +76,10 @@ const SigninPage = () => {
   );
 
   return (
-    <Modal
-      title="Create an account"
-      isOpen={true}
-      footer={footer}
-      actionLabel="Sign up"
-    >
-      <>
+    <section className="border-x border-gray-200">
+      <PageHeader title="Register" />
+
+      <div className="w-5/6 h-[90vh] md:h-screen md:max-w-md mx-auto mt-20">
         <form className="flex flex-col gap-4 mt-10" onSubmit={handleSignup}>
           <Input
             type="text"
@@ -112,8 +121,10 @@ const SigninPage = () => {
             <FormButton label="Sign Up" fullWidth />
           </div>
         </form>
-      </>
-    </Modal>
+
+        <Footer />
+      </div>
+    </section>
   );
 };
 export default SigninPage;

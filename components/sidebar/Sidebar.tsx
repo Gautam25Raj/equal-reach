@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import {
-  BellIcon,
   HomeIcon,
   InformationCircleIcon,
   UserCircleIcon,
@@ -37,12 +36,6 @@ const Sidebar = () => {
           Icon={UserGroupIcon}
           title="Feeds"
           href="/feed"
-          auth={true}
-        />
-        <SidebarRow
-          Icon={BellIcon}
-          title="Notifications"
-          href="/feed/notification"
           auth={true}
         />
 

@@ -18,7 +18,7 @@ const RegisterModal = () => {
   const [name, setName] = useState('Test User');
   const [username, setUsername] = useState('TestUser');
   const [email, setEmail] = useState('testuser@equalreach.com');
-  const [password, setPassword] = useState('12345678');
+  const [password, setPassword] = useState('equalreach1234');
 
   const isOpen = useAppSelector((state) => state.modalReducer.isSignupOpen);
   const dispatch = useDispatch<AppDispatch>();
