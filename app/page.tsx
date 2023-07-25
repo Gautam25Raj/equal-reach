@@ -3,6 +3,7 @@ import ReadyToJoin from '@/components/ReadyToJoin';
 import Footer from '@/components/layout/Footer';
 import PageHeader from '@/components/layout/PageHeader';
 import HomeHeader from '@/components/layout/header/HomeHeader';
+import Link from 'next/link';
 
 export default async function Home() {
   return (
@@ -21,11 +22,12 @@ export default async function Home() {
             Difference.&quot;
           </p>
 
-          <button
+          <Link
+            href="/about"
             className={`py-2 px-7 text-xs  after:content-[" "] after:h-[115%] after:w-[105%]  relative after:absolute after:-z-50 after:top-1/2 after:left-1/2 after:bg-rainbow  after:rounded-md w-fit bg-white rounded-md after:-translate-y-1/2 after:-translate-x-1/2`}
           >
             About Us
-          </button>
+          </Link>
         </div>
 
         <ReadyToJoin />
