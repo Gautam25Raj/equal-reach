@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Avatar from '../profile/Avatar';
+import { useRouter } from 'next/navigation';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { useMemo } from 'react';
 
@@ -11,15 +12,19 @@ interface PostContentProps {
   body: string;
   userId: string;
   createdAt: string;
+  id: string;
 }
 
 const PostContent = ({
+  id,
   image,
   userData,
   body,
   userId,
   createdAt,
 }: PostContentProps) => {
+  const router = useRouter();
+
   const createdAtDate = useMemo(() => {
     if (!createdAt) return null;
 
@@ -28,16 +33,36 @@ const PostContent = ({
     });
   }, [createdAt]);
 
+  const goToPost = (e: any) => {
+    e.stopPropagation();
+
+    router.push(`/posts/${id}`);
+  };
+
+  const goToUserProfile = (e: any) => {
+    e.stopPropagation();
+
+    router.push(`/feed/profile/${userId}`);
+  };
+
   return (
-    <div className="flex">
+    <div className="flex px-5 pt-5 hover:bg-gray-50" onClick={goToPost}>
       <div className="w-12 mr-2">
         <Avatar profileImage={userData.profileImage} userId={userId} />
       </div>
 
       <div className="w-full`">
         <div className="flex flex-col sm:items-center sm:space-x-1 sm:flex-row">
-          <p className="font-bold text-rainbow w-fit">{userData.name}</p>
-          <p className="text-sm text-gray-500 sm:block">
+          <p
+            className="font-bold text-rainbow w-fit hover:underline"
+            onClick={goToUserProfile}
+          >
+            {userData.name}
+          </p>
+          <p
+            className="text-sm text-gray-500 sm:block hover:underline"
+            onClick={goToUserProfile}
+          >
             {'@' + userData.username}
           </p>
           <p className="text-gray-500 text-sm">{createdAtDate}</p>

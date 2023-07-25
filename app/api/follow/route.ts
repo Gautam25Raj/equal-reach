@@ -49,43 +49,6 @@ export async function POST(req: Request) {
   }
 }
 
-// export async function DELETE(req: Request) {
-//   try {
-//     const { userId } = await req.json();
-
-//     if (!userId || typeof userId !== 'string') {
-//       throw new Error('Ivalid user id');
-//     }
-
-//     const user = await prisma.user.findUnique({
-//       where: {
-//         id: userId,
-//       },
-//     });
-
-//     if (!user) {
-//       throw new Error('User not found');
-//     }
-
-//     let updatedFollowingIds = [...(user.followingIds || [])];
-
-//     updatedFollowingIds = updatedFollowingIds.filter((id) => id !== userId);
-
-//     const updateUser = await prisma.user.update({
-//       where: {
-//         id: userId,
-//       },
-//       data: {
-//         followingIds: updatedFollowingIds,
-//       },
-//     });
-
-//     return NextResponse.json(updateUser);
-//   } catch (error: any) {
-//     return NextResponse.json({ error: error.message }, { status: 500 });
-//   }
-// }
-
 export async function DELETE(req: Request) {
   try {
     const { userId, currentUser } = await req.json();

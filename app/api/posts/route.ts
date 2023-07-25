@@ -12,7 +12,17 @@ export async function GET(req: Request) {
             profileImage: true,
           },
         },
-        comments: true,
+        comments: {
+          include: {
+            user: {
+              select: {
+                username: true,
+                name: true,
+                profileImage: true,
+              },
+            },
+          },
+        },
       },
       orderBy: {
         createdAt: 'desc',
