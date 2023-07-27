@@ -6,8 +6,8 @@ export const metadata: Metadata = {
     'Equal Reach aims to address social inequality and promote equal opportunities for all individuals, regardless of their background, gender, race, or socioeconomic status.',
 };
 
-const layout = async ({ children }: { children: React.ReactNode }) => {
-  return { children };
+const layout = ({ children }: { children: React.ReactNode }) => {
+  return <>{children}</>;
 };
 
 export default layout;
