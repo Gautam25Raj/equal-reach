@@ -6,7 +6,6 @@ export async function GET(
   { params }: { params: { postId: string } }
 ) {
   try {
-    console.log('params', params);
     const { postId } = params;
 
     if (!postId || typeof postId !== 'string') {
@@ -46,7 +45,6 @@ export async function GET(
 
     return NextResponse.json(post);
   } catch (error) {
-    console.log(error);
     NextResponse.json({ error: 'Something went wrong!' }, { status: 500 });
   }
 }

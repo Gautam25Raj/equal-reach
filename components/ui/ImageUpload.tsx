@@ -26,7 +26,6 @@ const ImageUpload = ({
   const handleDrop = (files: any) => {
     const file = files[0];
     const reader = new FileReader();
-    console.log(file);
 
     reader.onload = (e: any) => {
       setBase64(e.target.result);

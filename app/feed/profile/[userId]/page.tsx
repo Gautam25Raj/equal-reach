@@ -18,7 +18,7 @@ const UserView = () => {
   if (isLoading || !userData) {
     return (
       <>
-        <PageHeader title={'Profile'} isRefresh={true} opacity />
+        <PageHeader title={'Profile'} opacity />
 
         <div className="flex justify-center items-center h-full -m-16">
           <ClipLoader color="text-yellow-600" size={80} />
@@ -29,11 +29,7 @@ const UserView = () => {
 
   return (
     <>
-      <PageHeader
-        title={'Profile: ' + userData.username}
-        isRefresh={true}
-        opacity
-      />
+      <PageHeader title={'Profile: ' + userData.username} opacity />
 
       <ProfileHero
         userId={userData.id}

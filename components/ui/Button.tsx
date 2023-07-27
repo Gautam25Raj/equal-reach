@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 interface ButtonProps {
   label: string;
   onClick?: () => void;

@@ -1,6 +1,6 @@
 import usePost from '@/hooks/usePost';
 import usePosts from './usePosts';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 

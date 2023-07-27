@@ -16,7 +16,7 @@ const Sidebar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="flex flex-row md:flex-col order-last md:order-first items-center md:mt-5 xl:px-4 h-[10vh] w-full justify-center md:justify-normal md:items-center border-t border-gray-200 md:border-t-0 fixed bottom-0 md:static">
+    <nav className="flex flex-row md:flex-col order-last md:order-first items-center md:mt-5 xl:px-4 h-[10vh] w-full justify-center md:justify-normal md:items-center border-t border-gray-200 md:border-t-0 fixed bottom-0 md:static bg-white">
       <Image
         src="/equal-reach-logo.svg"
         alt="Equal Reach Logo"

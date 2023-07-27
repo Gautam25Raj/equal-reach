@@ -8,7 +8,6 @@ export async function PUT(
   try {
     const body = await req.json();
     const { name, username, email, bio, profileImage, coverImage } = body;
-    console.log(body);
 
     if (!name || !username || !email) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 500 });

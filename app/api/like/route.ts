@@ -5,14 +5,10 @@ import prisma from '@/libs/prismadb';
 export async function POST(req: Request) {
   try {
     const { postId, currentUserId } = await req.json();
-    console.log('postId', postId);
-    console.log('currentUserId', currentUserId);
 
     const post = await prisma.post.findUnique({
       where: { id: postId },
     });
-
-    console.log('post', post);
 
     if (!post) {
       throw new Error('Post not found');
@@ -21,8 +17,6 @@ export async function POST(req: Request) {
     let updatedLikedIds = [...(post.likedIds || [])];
 
     updatedLikedIds.push(currentUserId);
-
-    console.log('updatedLikedIds', updatedLikedIds);
 
     const updatedPost = await prisma.post.update({
       where: { id: postId },

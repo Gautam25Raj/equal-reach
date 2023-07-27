@@ -23,7 +23,6 @@ const Comment = ({
   user,
 }: CommentsProps) => {
   const router = useRouter();
-  console.log(user);
 
   const createdAtDate = useMemo(() => {
     if (!createdAt) return null;
