@@ -31,6 +31,27 @@ Run the development server :
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build the production code :
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
+
+Run the production code :
+
+```bash
+npm run start
+```
+
+## Environment Variables Setup Guide
+To run this project, you need `.env` files in your root folders. Add the following environment variables to your .env file: 
+
+`DATABASE_URL` : Your mongodb database url to connect your project with your database.
+
+`NEXTAUTH_SECRET` : Your Next auth secret key for your authentication. Ex-AnythingYouLinkAndThisShouldBeSecret
+
+`NEXTAUTH_JWT_SECRET` : Your JWT secret key. Ex-AnythingYouLinkAndThisShouldBeSecret
+
+<br>
+
+**Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
