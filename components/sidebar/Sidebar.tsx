@@ -32,15 +32,14 @@ const Sidebar = () => {
           href="/about"
           auth={true}
         />
-        <SidebarRow
-          Icon={UserGroupIcon}
-          title="Feeds"
-          href="/feed"
-          auth={true}
-        />
-
         {!!session ? (
           <>
+            <SidebarRow
+              Icon={UserGroupIcon}
+              title="Feeds"
+              href="/feed"
+              auth={true}
+            />
             <SidebarRow
               href="/feed/profile"
               Icon={UserCircleIcon}

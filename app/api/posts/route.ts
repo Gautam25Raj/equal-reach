@@ -38,3 +38,26 @@ export async function GET(req: Request) {
     );
   }
 }
+
+export async function POST(
+  req: Request,
+) {
+  try {
+    const { body, image, userId } = await req.json();
+
+    const post = await prisma.post.create({
+      data: {
+        body,
+        userId,
+        image,
+      },
+    });
+
+    return NextResponse.json(post);
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Something went wrong!' },
+      { status: 500 }
+    );
+  }
+}

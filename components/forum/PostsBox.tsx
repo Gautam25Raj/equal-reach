@@ -10,7 +10,6 @@ import ImageUpload from '../ui/ImageUpload';
 import useUser from '@/hooks/useUser';
 import usePosts from '@/hooks/usePosts';
 import { toast } from 'react-hot-toast';
-import { set } from 'date-fns';
 
 interface PostsBoxProps {
   userId: string;
@@ -19,10 +18,9 @@ interface PostsBoxProps {
 const PostsBox = ({ userId }: PostsBoxProps) => {
   const { data: user, isLoading } = useUser(userId);
   const { mutate: mutatePosts } = usePosts();
+  const [text, setText] = useState('');
   const [postImage, setPostImage] = useState('');
   const [isOpenImage, setIsOpenImage] = useState(false);
-
-  const [body, setBody] = useState('');
 
   if (isLoading || !user) {
     return (
@@ -36,8 +34,9 @@ const PostsBox = ({ userId }: PostsBoxProps) => {
     e.preventDefault();
 
     try {
-      let updatePost = axios.post(`/api/posts/users/${userId}`, {
-        body,
+      let updatePost = axios.post(`/api/posts`, {
+        userId: userId,
+        body: text,
         image: postImage ? postImage : null,
       });
 
@@ -47,7 +46,7 @@ const PostsBox = ({ userId }: PostsBoxProps) => {
         error: <b>Something went wrong.</b>,
       });
 
-      setBody('');
+      setText('');
       setPostImage('');
       setIsOpenImage(false);
       mutatePosts();
@@ -69,8 +68,8 @@ const PostsBox = ({ userId }: PostsBoxProps) => {
       <div className="flex flex-1 items-center pl-2">
         <form className="flex flex-1 flex-col" onSubmit={handlePost}>
           <textarea
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
             placeholder="What's happening?"
             className="h-36 py-5 w-full text-xl outline-none placeholder:text-xl no-scrollbar no-scrollbar::-webkit-scrollbar"
           />
@@ -101,7 +100,7 @@ const PostsBox = ({ userId }: PostsBoxProps) => {
             </div>
 
             <button
-              disabled={!body}
+              disabled={!text}
               className="btn-rainbow rounded-full px-5 py-2 font-bold text-white hover:scale-105 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Post

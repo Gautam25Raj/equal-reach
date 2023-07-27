@@ -1,6 +1,9 @@
+'use client';
+
 import usePosts from '@/hooks/usePosts';
 import ClipLoader from 'react-spinners/ClipLoader';
 import Post from './Post';
+import { useState, useEffect } from 'react';
 
 interface PostsFeedProps {
   userId?: string;
@@ -8,7 +11,13 @@ interface PostsFeedProps {
 }
 
 const PostsFeed = ({ userId, currentUserId }: PostsFeedProps) => {
-  const { data: posts = [], isLoading } = usePosts(userId);
+  const [allPosts, setAllPosts] = useState([]);
+  const { data: posts = allPosts, isLoading } = usePosts(userId);
+
+  useEffect(() => {
+    setAllPosts(posts);
+    console.log(allPosts);
+  }, [posts, allPosts]);
 
   if (isLoading || !posts) {
     return (
@@ -18,14 +27,14 @@ const PostsFeed = ({ userId, currentUserId }: PostsFeedProps) => {
     );
   }
 
-  if (posts.length === 0)
+  if (allPosts.length === 0)
     return (
       <div className="text-gray-600 text-center mt-10">No Posts to Show</div>
     );
 
   return (
     <>
-      {posts.map((post: Record<string, any>) => (
+      {allPosts.map((post: Record<string, any>) => (
         <Post
           key={post.id}
           post={post}

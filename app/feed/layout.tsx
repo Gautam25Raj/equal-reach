@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
 
 import Widgets from '@/components/widgets/Widgets';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../api/auth/[...nextauth]/route';
-import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'Equal Reach | Feeds',
@@ -12,12 +9,6 @@ export const metadata: Metadata = {
 };
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    redirect('/login');
-  }
-
   return (
     <div className="col-span-10 grid gap-2 grid-cols-10">
       {children}
