@@ -11,10 +11,10 @@ import { useRouter } from 'next/navigation';
 import PageHeader from '../PageHeader';
 
 const SigninPage = () => {
-  const [name, setName] = useState('Test User');
-  const [username, setUsername] = useState('TestUser');
-  const [email, setEmail] = useState('testuser@equalreach.com');
-  const [password, setPassword] = useState('equalreach1234');
+  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const router = useRouter();
 

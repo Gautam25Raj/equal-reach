@@ -10,9 +10,9 @@ import { FormButton } from '@/components/ui/Button';
 import PageHeader from '../PageHeader';
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('TestUser');
-  const [email, setEmail] = useState('testuser@equalreach.com');
-  const [password, setPassword] = useState('equalreach1234');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const router = useRouter();
 

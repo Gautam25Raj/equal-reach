@@ -14,9 +14,9 @@ import Input from '@/components/ui/Input';
 import { FormButton } from '@/components/ui/Button';
 
 const LoginModal = () => {
-  const [username, setUsername] = useState('TestUser');
-  const [email, setEmail] = useState('testuser@equalreach.com');
-  const [password, setPassword] = useState('equalreach1234');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const isOpen = useAppSelector((state) => state.modalReducer.isLoginOpen);
   const dispatch = useDispatch<AppDispatch>();
